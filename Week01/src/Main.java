@@ -6,6 +6,7 @@ public class Main {
         System.out.println(IPValidator.validateIPv4Address("192.168@1.1"));     // false
         System.out.println(IPValidator.validateIPv4Address("192.168@.1.1"));    // false
         System.out.println(IPValidator.validateIPv4Address("192.168.256.1"));   // false
+        System.out.println(IPValidator.validateIPv4Address(".192.168.2561"));   // false
     }
     public static void exercise2Tests() {
         System.out.println(JumpGame.canWin(new int[]{2, 3, 1, 1, 0}));   // true;

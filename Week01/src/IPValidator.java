@@ -18,6 +18,7 @@ public class IPValidator {
         if (tokens.length != 4) return false;
 
         for (String token: tokens) {
+            if (token.isEmpty() || token.isBlank()) return false;
             if (!isNumberValid(token.toCharArray())) return false;
         }
 
