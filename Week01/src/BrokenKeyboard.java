@@ -1,20 +1,18 @@
 public class BrokenKeyboard {
     public static int calculateFullyTypedWords(String message, String brokenKeys) {
         String[] words = message.split(" ");
-        int canWriteCtr = 0;
+        int canWriteCtr = words.length;
 
         for (String word: words) {
-            if (word.isEmpty()) continue;
-            boolean canBeWritten = true;
+            if (word.isEmpty() || word.isBlank()) canWriteCtr--;
 
             for (int i = 0; i < word.length(); ++i) {
                 if (brokenKeys.contains(word.charAt(i) + "")) {
-                    canBeWritten = false;
+                    canWriteCtr--;
                     break;
                 };
             }
 
-            if (canBeWritten) canWriteCtr++;
         }
 
         return canWriteCtr;

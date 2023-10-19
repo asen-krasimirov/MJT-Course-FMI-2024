@@ -22,6 +22,9 @@ public class Main {
         System.out.println(BrokenKeyboard.calculateFullyTypedWords("dve po 2 4isto novi beli kecove", "o2sf")); // 2
         System.out.println(BrokenKeyboard.calculateFullyTypedWords("     ", "asd"));                            // 0
         System.out.println(BrokenKeyboard.calculateFullyTypedWords(" - 1 @ - 4", "s"));                         // 5
+        System.out.println(BrokenKeyboard.calculateFullyTypedWords("Helly World", "l"));                        // 0
+        System.out.println(BrokenKeyboard.calculateFullyTypedWords("Helly      World   A ", "o"));              // 2
+        System.out.println(BrokenKeyboard.calculateFullyTypedWords("А  ", "o"));                                // 1
     }
 
     public static void main(String[] args) {
