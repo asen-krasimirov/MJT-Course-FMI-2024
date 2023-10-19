@@ -10,7 +10,7 @@ public class BrokenKeyboard {
                 if (brokenKeys.contains(word.charAt(i) + "")) {
                     canWriteCtr--;
                     break;
-                };
+                }
             }
 
         }
