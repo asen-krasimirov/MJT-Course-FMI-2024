@@ -1,4 +1,4 @@
-# MJT-Course-2024
+# MJT-Course-FMI-2024
 A repository for uploading exercises from the FMI MJT (Modern Java Technologies) Course 2023-2024.
 
 ### Lab exercises ( and solutions* ):
