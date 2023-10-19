@@ -10,6 +10,8 @@ public class Main {
     }
     public static void exercise2Tests() {
         System.out.println(JumpGame.canWin(new int[]{2, 3, 1, 1, 0}));   // true;
+        System.out.println(JumpGame.canWin(new int[]{4, 0, 0, 0, 0}));   // true;
+        System.out.println(JumpGame.canWin(new int[]{3, 0, 2, 0}));      // true;
         System.out.println(JumpGame.canWin(new int[]{3, 2, 1, 0, 0}));   // false;
         System.out.println(JumpGame.canWin(new int[]{0, 2, 1, 0, 0}));   // false;
     }
@@ -23,8 +25,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        exercise1Tests();
+//        exercise1Tests();
 //        exercise2Tests();
-//        exercise3Tests();
+        exercise3Tests();
     }
 }
