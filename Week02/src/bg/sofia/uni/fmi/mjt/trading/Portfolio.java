@@ -7,6 +7,7 @@ import bg.sofia.uni.fmi.mjt.trading.stock.MicrosoftStockPurchase;
 import bg.sofia.uni.fmi.mjt.trading.stock.StockPurchase;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 public class Portfolio implements PortfolioAPI {
     private String owner;
@@ -39,12 +40,12 @@ public class Portfolio implements PortfolioAPI {
     @Override
     public StockPurchase buyStock(String stockTicker, int quantity) {
         if (stockTicker == null) return null;
-        if (stockPurchases.length >= maxSize) return null;
+        if (size >= maxSize) return null;
         if (quantity < 0) return null;
 
         double currentStockPrice = priceChart.getCurrentPrice(stockTicker);
         double hasToPay = currentStockPrice * quantity;
-        if (hasToPay > budget) return null;
+        if (hasToPay > getRemainingBudget()) return null;
 
         StockPurchase purchase = null;
 
@@ -52,11 +53,13 @@ public class Portfolio implements PortfolioAPI {
             case "MSFT" -> purchase = new MicrosoftStockPurchase(quantity, LocalDateTime.now(), currentStockPrice);
             case "GOOG" -> purchase = new GoogleStockPurchase(quantity, LocalDateTime.now(), currentStockPrice);
             case "AMZ" -> purchase = new AmazonStockPurchase(quantity, LocalDateTime.now(), currentStockPrice);
-            default -> { return null; }
+            default -> {
+                return null;
+            }
         }
 
         budget -= hasToPay;
-        stockPurchases[stockPurchases.length - 1] = purchase;
+        stockPurchases[size++] = purchase;
         priceChart.changeStockPrice(stockTicker, 5);
 
         return purchase;
@@ -64,21 +67,25 @@ public class Portfolio implements PortfolioAPI {
 
     @Override
     public StockPurchase[] getAllPurchases() {
-        return stockPurchases;
+        return Arrays.copyOf(stockPurchases, size);
     }
 
     @Override
     public StockPurchase[] getAllPurchases(LocalDateTime startTimestamp, LocalDateTime endTimestamp) {
-        StockPurchase[] stockPurchasesToReturn = new StockPurchase[maxSize];
+        StockPurchase[] stockPurchasesToReturn = new StockPurchase[size];
 
-        int idx = 0;
-        for (StockPurchase stockPurchase: stockPurchases) {
-            if (stockPurchase.getPurchaseTimestamp().isAfter(startTimestamp) && stockPurchase.getPurchaseTimestamp().isBefore(endTimestamp)) {
-                stockPurchasesToReturn[idx++] = stockPurchase;
+        int count = 0;
+        for (int i = 0; i < size; ++i) {
+            if (stockPurchases[i].getPurchaseTimestamp().equals(startTimestamp) ||
+                    stockPurchases[i].getPurchaseTimestamp().equals(endTimestamp) ||
+                    (stockPurchases[i].getPurchaseTimestamp().isAfter(startTimestamp) && stockPurchases[i].getPurchaseTimestamp().isBefore(endTimestamp))
+            ) {
+                stockPurchasesToReturn[i] = stockPurchases[i];
+                count++;
             }
         }
 
-        return stockPurchasesToReturn;
+        return Arrays.copyOf(stockPurchasesToReturn, count);
     }
 
     @Override

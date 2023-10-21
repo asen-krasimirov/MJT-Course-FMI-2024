@@ -5,6 +5,7 @@ import bg.sofia.uni.fmi.mjt.trading.stock.AmazonStockPurchase;
 import bg.sofia.uni.fmi.mjt.trading.stock.MicrosoftStockPurchase;
 import bg.sofia.uni.fmi.mjt.trading.stock.StockPurchase;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.TemporalAmount;
 import java.util.Arrays;
@@ -59,13 +60,65 @@ public class Main {
         System.out.println(test.getNetWorth());
     }
 
+    public static void testBudgetGoesToZero() {
+        var timeNow = LocalDateTime.now();
+        var priceChart = new PriceChart(1, 2, 3);
+
+        Portfolio test = new Portfolio("Pesho", priceChart, 10, 5);
+
+        test.buyStock("GOOG", 5);
+
+        System.out.println(test.getRemainingBudget());
+        System.out.println(priceChart.getCurrentPrice("GOOG"));
+
+    }
+
+    public static void testTimestampedPurchases() {
+        var priceChart = new PriceChart(1, 2, 3);
+        Portfolio test = new Portfolio("Pesho", priceChart, 100, 5);
+
+        test.buyStock("GOOG", 5);
+        test.buyStock("GOOG", 5);
+        test.buyStock("GOOG", 5);
+
+        LocalDateTime startTime = LocalDateTime.of(2023, 10, 22, 1, 10);
+        LocalDateTime endTime = LocalDateTime.of(2023, 10, 22, 1, 15);
+
+        System.out.println(Arrays.toString(test.getAllPurchases(startTime, endTime)));
+
+    }
+
+    public static void testNetWorth1() {
+        var priceChart = new PriceChart(1, 10, 3);
+        Portfolio test = new Portfolio("Pesho", priceChart, 1000, 10);
+
+        for (int i = 0; i < 6; ++i) {
+            test.buyStock("GOOG", 10);
+            System.out.println("Net Worth: " + test.getNetWorth());
+            System.out.println("Budget: " + test.getRemainingBudget());
+        }
+    }
+
+    public static void testNetWorth2() {
+        var priceChart = new PriceChart(1, 1, 3);
+        Portfolio test = new Portfolio("Pesho", priceChart, 100, 10);
+
+        for (int i = 0; i < 6; ++i) {
+            test.buyStock("GOOG", 10);
+            System.out.println("Net Worth: " + test.getNetWorth());
+            System.out.println("Budget: " + test.getRemainingBudget());
+        }
+    }
+
     public static void main(String[] args) {
 //        testPriceChartClass();
 //        testSpecificStockPurchaseClass();
 
 //        testPortfolioConstructor();
-
-        testEmptyPortfolio();
-
+//        testEmptyPortfolio();
+//        testBudgetGoesToZero();
+//        testTimestampedPurchases();
+        testNetWorth1();
+//        testNetWorth2();
     }
 }
