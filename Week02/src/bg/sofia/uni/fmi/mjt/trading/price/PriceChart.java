@@ -30,13 +30,13 @@ public class PriceChart implements PriceChartAPI {
 
         switch (stockTicker) {
             case "MSFT" -> {
-                microsoftStockPrice += microsoftStockPrice * (double) percentChange / 100.0;
+                microsoftStockPrice += microsoftStockPrice * percentChange / 100.0;
             }
             case "GOOG" -> {
-                googleStockPrice += googleStockPrice * (double) percentChange / 100.0;
+                googleStockPrice += googleStockPrice * percentChange / 100.0;
             }
             case "AMZ" -> {
-                amazonStockPrice += amazonStockPrice * (double) percentChange / 100.0;
+                amazonStockPrice += amazonStockPrice * percentChange / 100.0;
             }
             default -> { return false; }
         }

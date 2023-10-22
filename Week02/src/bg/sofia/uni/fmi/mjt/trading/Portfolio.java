@@ -47,6 +47,9 @@ public class Portfolio implements PortfolioAPI {
         double hasToPay = currentStockPrice * quantity;
         if (hasToPay > getRemainingBudget()) return null;
 
+//        budget -= hasToPay;
+//        priceChart.changeStockPrice(stockTicker, 5);
+
         StockPurchase purchase = null;
 
         switch (stockTicker) {
