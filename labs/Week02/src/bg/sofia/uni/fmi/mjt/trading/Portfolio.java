@@ -75,7 +75,7 @@ public class Portfolio implements PortfolioAPI {
 
     @Override
     public StockPurchase[] getAllPurchases(LocalDateTime startTimestamp, LocalDateTime endTimestamp) {
-        StockPurchase[] stockPurchasesToReturn = new StockPurchase[size];
+        int[] stockPurchasesIndexes = new int[size];
 
         int count = 0;
         for (int i = 0; i < size; ++i) {
@@ -83,12 +83,17 @@ public class Portfolio implements PortfolioAPI {
                     !stockPurchases[i].getPurchaseTimestamp().isBefore(startTimestamp) &&
                     !stockPurchases[i].getPurchaseTimestamp().isAfter(endTimestamp)
             ) {
-                stockPurchasesToReturn[i] = stockPurchases[i];
-                count++;
+                stockPurchasesIndexes[count++] = i;
             }
         }
 
-        return Arrays.copyOf(stockPurchasesToReturn, count);
+        StockPurchase[] stockPurchasesToReturn = new StockPurchase[count];
+
+        for (int i = 0; i < count; ++i) {
+            stockPurchasesToReturn[i] = stockPurchases[stockPurchasesIndexes[i]];
+        }
+
+        return stockPurchasesToReturn;
     }
 
     @Override
