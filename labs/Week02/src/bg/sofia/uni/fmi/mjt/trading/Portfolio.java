@@ -47,9 +47,6 @@ public class Portfolio implements PortfolioAPI {
         double hasToPay = currentStockPrice * quantity;
         if (hasToPay > getRemainingBudget()) return null;
 
-//        budget -= hasToPay;
-//        priceChart.changeStockPrice(stockTicker, 5);
-
         StockPurchase purchase = null;
 
         switch (stockTicker) {
@@ -101,7 +98,7 @@ public class Portfolio implements PortfolioAPI {
         double sum = 0.0;
 
         for (int i = 0; i < size; ++i) {
-            sum += stockPurchases[i].getTotalPurchasePrice();
+            sum += stockPurchases[i].getQuantity() * priceChart.getCurrentPrice(stockPurchases[i].getStockTicker());
         }
 
         return Math.round(sum * 100.0) / 100.0;
