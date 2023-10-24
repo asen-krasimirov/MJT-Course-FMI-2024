@@ -79,13 +79,14 @@ public class Portfolio implements PortfolioAPI {
 
         int count = 0;
         for (int i = 0; i < size; ++i) {
-            if (stockPurchases[i].getPurchaseTimestamp().equals(startTimestamp) ||
-                    stockPurchases[i].getPurchaseTimestamp().equals(endTimestamp) ||
-                    (stockPurchases[i].getPurchaseTimestamp().isAfter(startTimestamp) && stockPurchases[i].getPurchaseTimestamp().isBefore(endTimestamp))
-            ) {
-                stockPurchasesToReturn[i] = stockPurchases[i];
-                count++;
-            }
+            // TODO: fix
+//            if (stockPurchases[i].getPurchaseTimestamp().equals(startTimestamp) ||
+//                    stockPurchases[i].getPurchaseTimestamp().equals(endTimestamp) ||
+//                    (stockPurchases[i].getPurchaseTimestamp().isAfter(startTimestamp) && stockPurchases[i].getPurchaseTimestamp().isBefore(endTimestamp))
+//            ) {
+//                stockPurchasesToReturn[i] = stockPurchases[i];
+//                count++;
+//            }
         }
 
         return Arrays.copyOf(stockPurchasesToReturn, count);
