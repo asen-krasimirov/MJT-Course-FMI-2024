@@ -77,19 +77,18 @@ public class Portfolio implements PortfolioAPI {
     public StockPurchase[] getAllPurchases(LocalDateTime startTimestamp, LocalDateTime endTimestamp) {
         StockPurchase[] stockPurchasesToReturn = new StockPurchase[size];
 
-//        int count = 0;
+        int count = 0;
         for (int i = 0; i < size; ++i) {
             if (
                     !stockPurchases[i].getPurchaseTimestamp().isBefore(startTimestamp) &&
                     !stockPurchases[i].getPurchaseTimestamp().isAfter(endTimestamp)
             ) {
                 stockPurchasesToReturn[i] = stockPurchases[i];
-//                count++;
+                count++;
             }
         }
 
-//        return Arrays.copyOf(stockPurchasesToReturn, count);
-        return stockPurchasesToReturn;
+        return Arrays.copyOf(stockPurchasesToReturn, count);
     }
 
     @Override
