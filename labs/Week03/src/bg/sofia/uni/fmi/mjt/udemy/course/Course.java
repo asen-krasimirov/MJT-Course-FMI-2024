@@ -22,17 +22,7 @@ public class Course implements Completable, Purchasable {
         this.content = content;
         this.category = category;
 
-        int hours = 0;
-        int minutes = 0;
-        for (Resource resource: content) {
-            minutes += resource.getDuration().minutes();
-            if (minutes > 60) {
-                hours++;
-                minutes -= 60;
-            }
-        }
-
-        this.totalTime = new CourseDuration(hours, minutes);
+        this.totalTime = CourseDuration.of(content);
     }
 
     public boolean isCompleted() {

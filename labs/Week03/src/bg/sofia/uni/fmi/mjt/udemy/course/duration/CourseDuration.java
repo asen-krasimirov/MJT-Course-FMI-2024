@@ -1,15 +1,27 @@
 package bg.sofia.uni.fmi.mjt.udemy.course.duration;
 
+import bg.sofia.uni.fmi.mjt.udemy.course.Resource;
+
 public record CourseDuration(int hours, int minutes) {
 
     public CourseDuration {
-        // interval could be not inclusive [0, 24] (hours) and [0, 60] (minutes)
+        // interval could be not inclusive [1, 23] (hours) and [1, 59] (minutes)
         if (hours < 0 || hours > 24) throw new IllegalArgumentException("Illegal hours value");
         if (minutes < 0 || minutes > 60) throw new IllegalArgumentException("Illegal minutes value!");
     }
 
-//    TODO: finish
-//    public static CourseDuration of(Resource[] content) {
-//        return ;
-//    }
+    public static CourseDuration of(Resource[] content) {
+        int hours = 0;
+        int minutes = 0;
+
+        for (Resource resource: content) {
+            minutes += resource.getDuration().minutes();
+            if (minutes > 60) {
+                hours++;
+                minutes -= 60;
+            }
+        }
+
+        return new CourseDuration(hours, minutes);
+    }
 }
