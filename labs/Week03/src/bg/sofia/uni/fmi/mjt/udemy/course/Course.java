@@ -14,7 +14,6 @@ public class Course implements Completable, Purchasable {
     private boolean purchased = false;
     private CourseDuration totalTime;
 
-
     public Course(String name, String description, double price, Resource[] content, Category category) {
         this.name = name;
         this.description = description;

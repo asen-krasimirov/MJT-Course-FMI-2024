@@ -26,6 +26,7 @@ public class EducationalAccount extends AccountBase {
                 lastFiveGradesSum += grades[i];
             }
 
+            // could have a problem with "==" of doubles
             if ((lastFiveGradesSum / 5.0) >= 4.5) {
                 balance -= course.getPrice() - (course.getPrice() * accountType.getDiscount());
                 hasDiscount = false;

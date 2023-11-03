@@ -24,4 +24,12 @@ public record CourseDuration(int hours, int minutes) {
 
         return new CourseDuration(hours, minutes);
     }
+
+    public static int compare(CourseDuration d1, CourseDuration d2) {
+        if (d1.hours == d2.hours) {
+            return Integer.compare(d1.minutes, d2.minutes);
+        }
+
+        return Integer.compare(d1.hours, d2.hours);
+    }
 }
