@@ -38,6 +38,10 @@ public class Course implements Completable, Purchasable {
             }
         }
 
+        if (completed == 0) {
+            return 0;
+        }
+
         return (content.length / completed) * 100;
     }
 
