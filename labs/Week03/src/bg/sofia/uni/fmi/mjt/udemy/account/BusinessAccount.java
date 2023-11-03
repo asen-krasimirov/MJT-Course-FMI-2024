@@ -27,6 +27,7 @@ public class BusinessAccount extends AccountBase {
                 course.purchase();
 
                 balance -= course.getPrice() - (course.getPrice() * accountType.getDiscount());
+                return;
             }
         }
 

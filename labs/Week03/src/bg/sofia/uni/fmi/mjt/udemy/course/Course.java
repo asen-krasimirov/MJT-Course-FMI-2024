@@ -25,7 +25,12 @@ public class Course implements Completable, Purchasable {
 
     @Override
     public boolean isCompleted() {
-        return getCompletionPercentage() == 100.0;
+        for (Resource resource: content) {
+            if (!resource.isCompleted()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -42,7 +47,9 @@ public class Course implements Completable, Purchasable {
             return 0;
         }
 
-        return (content.length / completed) * 100;
+        double completionPercentage = ((double) completed / (double) content.length) * 100.0;
+
+        return (int) Math.ceil(completionPercentage);
     }
 
     @Override
@@ -79,13 +86,6 @@ public class Course implements Completable, Purchasable {
         return totalTime;
     }
 
-    /**
-     * Completes a resource from the course.
-     *
-     * @param resourceToComplete the resource which will be completed.
-     * @throws IllegalArgumentException if resourceToComplete is null.
-     * @throws ResourceNotFoundException if the resource could not be found in the course.
-     */
     public void completeResource(Resource resourceToComplete) throws ResourceNotFoundException {
         if (resourceToComplete == null) {
             throw new IllegalArgumentException("Value of resourceToComplete should not be null!");
