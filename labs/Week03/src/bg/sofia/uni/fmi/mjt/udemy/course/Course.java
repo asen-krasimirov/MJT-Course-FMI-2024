@@ -25,18 +25,22 @@ public class Course implements Completable, Purchasable {
         this.totalTime = CourseDuration.of(content);
     }
 
+    @Override
     public boolean isCompleted() {
         return completePercentage == 100;
     }
 
+    @Override
     public int getCompletionPercentage() {
         return completePercentage;
     }
 
+    @Override
     public void purchase() {
         purchased = true;
     }
 
+    @Override
     public boolean isPurchased() {
         return purchased;
     }

@@ -12,10 +12,12 @@ public class Resource implements Completable {
         this.duration = duration;
     }
 
+    @Override
     public boolean isCompleted() {
         return completePercentage == 100;
     }
 
+    @Override
     public int getCompletionPercentage() {
         return completePercentage;
     }
