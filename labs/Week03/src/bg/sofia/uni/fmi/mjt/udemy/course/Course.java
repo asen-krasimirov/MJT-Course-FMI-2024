@@ -2,6 +2,7 @@ package bg.sofia.uni.fmi.mjt.udemy.course;
 
 import bg.sofia.uni.fmi.mjt.udemy.course.duration.CourseDuration;
 
+import bg.sofia.uni.fmi.mjt.udemy.exception.CourseNotCompletedException;
 import bg.sofia.uni.fmi.mjt.udemy.exception.ResourceNotFoundException;
 
 public class Course implements Completable, Purchasable {
@@ -10,7 +11,6 @@ public class Course implements Completable, Purchasable {
     private double price;
     private Resource[] content;
     private Category category;
-    private int completePercentage = 0;
     private boolean purchased = false;
     private CourseDuration totalTime;
 
@@ -21,18 +21,25 @@ public class Course implements Completable, Purchasable {
         this.price = price;
         this.content = content;
         this.category = category;
-
         this.totalTime = CourseDuration.of(content);
     }
 
     @Override
     public boolean isCompleted() {
-        return completePercentage == 100;
+        return getCompletionPercentage() == 100.0;
     }
 
     @Override
     public int getCompletionPercentage() {
-        return completePercentage;
+        int completed = 0;
+
+        for (Resource resource: content) {
+            if (resource.isCompleted()) {
+                completed++;
+            }
+        }
+
+        return (content.length / completed) * 100;
     }
 
     @Override
@@ -88,7 +95,22 @@ public class Course implements Completable, Purchasable {
             }
         }
 
-        throw new ResourceNotFoundException("Resource not found!");
+        throw new ResourceNotFoundException();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Resource)) {
+            return false;
+        }
+
+        Resource resource = (Resource) obj;
+
+        return this.getName().equals(resource.getName());
     }
 
 }
