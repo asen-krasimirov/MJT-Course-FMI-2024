@@ -9,14 +9,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-public class Member implements Comparable<Member>, GymMember {
+public class Member implements Comparable<GymMember>, GymMember {
+
     private final Address address;
     private final String name;
     private final int age;
@@ -34,7 +33,7 @@ public class Member implements Comparable<Member>, GymMember {
     }
 
     @Override
-    public int compareTo(Member other) {
+    public int compareTo(GymMember other) {
         if (other.getPersonalIdNumber() == null) {
             return 1;
         }
@@ -88,7 +87,7 @@ public class Member implements Comparable<Member>, GymMember {
         }
 
         Set<Entry<DayOfWeek, Workout>> entries = trainingProgramme.entrySet();
-        ArrayList<DayOfWeek> validEntries = new ArrayList<DayOfWeek>();
+        ArrayList<DayOfWeek> validEntries = new ArrayList<>();
 
         for (Entry<DayOfWeek, Workout> entry : entries) {
             if (entry.getValue().exercises().getLast().name().compareTo(exerciseName) == 0) {
@@ -128,8 +127,9 @@ public class Member implements Comparable<Member>, GymMember {
             throw new DayOffException(day + " is considered a day off!");
         }
 
-        for (Exercise exercise: exercises) {
+        for (Exercise exercise : exercises) {
             workout.exercises().add(exercise);
         }
     }
+
 }

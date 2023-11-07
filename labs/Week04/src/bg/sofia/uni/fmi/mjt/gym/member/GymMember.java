@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-public interface GymMember {
+public interface GymMember extends Comparable<GymMember> {
 
     /**
      * Returns the member's name.
