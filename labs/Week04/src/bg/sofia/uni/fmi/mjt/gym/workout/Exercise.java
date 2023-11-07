@@ -4,6 +4,10 @@ public record Exercise(String name, int sets, int repetitions) implements Compar
 
     @Override
     public int compareTo(Exercise other) {
+        if (other.name() == null) {
+            return 1;
+        }
+
         return this.name().compareTo(other.name());
     }
 }
