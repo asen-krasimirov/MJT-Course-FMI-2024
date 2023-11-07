@@ -1,20 +1,28 @@
 package bg.sofia.uni.fmi.mjt.gym.member;
 
+import bg.sofia.uni.fmi.mjt.gym.workout.Exercise;
 import bg.sofia.uni.fmi.mjt.gym.workout.Workout;
 
 import java.time.DayOfWeek;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class Member implements Comparable<Member>, GymMember {
-    private Address address;
-    private String name;
-    private int age;
-    private String personalIdNumber;
-    private Gender gender;
-    private HashMap<DayOfWeek, Workout> trainingProgramme;
+    private final Address address;
+    private final String name;
+    private final int age;
+    private final String personalIdNumber;
+    private final Gender gender;
+    private final HashMap<DayOfWeek, Workout> trainingProgramme;
 
     public Member(Address address, String name, int age, String personalIdNumber, Gender gender) {
         this.address = address;
@@ -61,7 +69,7 @@ public class Member implements Comparable<Member>, GymMember {
 
     @Override
     public Map<DayOfWeek, Workout> getTrainingProgram() {
-        return Map.copyOf(trainingProgramme);
+        return Collections.unmodifiableMap(trainingProgramme);
     }
 
     @Override
@@ -71,5 +79,57 @@ public class Member implements Comparable<Member>, GymMember {
         }
 
         trainingProgramme.put(day, workout);
+    }
+
+    @Override
+    public Collection<DayOfWeek> getDaysFinishingWith(String exerciseName) {
+        if (exerciseName == null || exerciseName.isEmpty()) {
+            throw new IllegalArgumentException("Value of exerciseName shouldn't be null or empty!");
+        }
+
+        Set<Entry<DayOfWeek, Workout>> entries = trainingProgramme.entrySet();
+        ArrayList<DayOfWeek> validEntries = new ArrayList<DayOfWeek>();
+
+        for (Entry<DayOfWeek, Workout> entry : entries) {
+            if (entry.getValue().exercises().getLast().name().compareTo(exerciseName) == 0) {
+                validEntries.add(entry.getKey());
+            }
+        }
+
+        return validEntries;
+    }
+
+    @Override
+    public void addExercise(DayOfWeek day, Exercise exercise) {
+        if (day == null || exercise == null) {
+            throw new IllegalArgumentException("Value of day and exercise shouldn't be null!");
+        }
+
+        Workout workout = trainingProgramme.get(day);
+
+        if (workout == null) {
+            throw new DayOffException(day + " is considered a day off!");
+        }
+
+        workout.exercises().add(exercise);
+    }
+
+    @Override
+    public void addExercises(DayOfWeek day, List<Exercise> exercises) {
+        if (day == null || exercises == null) {
+            throw new IllegalArgumentException("Value of day and exercise shouldn't be null!");
+        } else if (exercises.isEmpty()) {
+            throw new IllegalArgumentException("Exercises list shouldn't be empty!");
+        }
+
+        Workout workout = trainingProgramme.get(day);
+
+        if (workout == null) {
+            throw new DayOffException(day + " is considered a day off!");
+        }
+
+        for (Exercise exercise: exercises) {
+            workout.exercises().add(exercise);
+        }
     }
 }
