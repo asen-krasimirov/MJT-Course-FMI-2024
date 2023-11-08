@@ -8,7 +8,7 @@ import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -21,7 +21,7 @@ public class Member implements Comparable<GymMember>, GymMember {
     private final int age;
     private final String personalIdNumber;
     private final Gender gender;
-    private final HashMap<DayOfWeek, Workout> trainingProgramme;
+    private final Map<DayOfWeek, Workout> trainingProgramme;
 
     public Member(Address address, String name, int age, String personalIdNumber, Gender gender) {
         this.address = address;
@@ -29,7 +29,7 @@ public class Member implements Comparable<GymMember>, GymMember {
         this.age = age;
         this.personalIdNumber = personalIdNumber;
         this.gender = gender;
-        this.trainingProgramme = HashMap.newHashMap(DayOfWeek.values().length);
+        this.trainingProgramme = new LinkedHashMap<>();
     }
 
     @Override
@@ -127,9 +127,7 @@ public class Member implements Comparable<GymMember>, GymMember {
             throw new DayOffException(day + " is considered a day off!");
         }
 
-        for (Exercise exercise : exercises) {
-            workout.exercises().add(exercise);
-        }
+        workout.exercises().addAll(exercises);
     }
 
 }

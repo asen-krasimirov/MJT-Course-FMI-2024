@@ -6,7 +6,7 @@ import bg.sofia.uni.fmi.mjt.gym.workout.Exercise;
 import bg.sofia.uni.fmi.mjt.gym.workout.Workout;
 
 import java.time.DayOfWeek;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -18,9 +18,9 @@ import java.util.List;
 
 public class Gym implements GymAPI {
 
-    private int capacity;
+    private final int capacity;
     private final Address address;
-    private final TreeSet<GymMember> members;
+    private final SortedSet<GymMember> members;
 
     public Gym(int capacity, Address address) {
         this.capacity = capacity;
@@ -35,22 +35,16 @@ public class Gym implements GymAPI {
 
     @Override
     public SortedSet<GymMember> getMembersSortedByName() {
-        SortedSet<GymMember> collectionToReturn = Collections.unmodifiableSortedSet(members);
-
-        Arrays.sort(collectionToReturn.toArray());
-
-        return collectionToReturn;
+        return Collections.unmodifiableSortedSet(members);
     }
 
     @Override
     public SortedSet<GymMember> getMembersSortedByProximityToGym() {
-        SortedSet<GymMember> collectionToReturn = Collections.unmodifiableSortedSet(members);
+        SortedSet<GymMember> collectionToReturn = new TreeSet<>(new GymProximityComparator(address));
 
-        GymProximityComparator comparator = new GymProximityComparator(address);
+        collectionToReturn.addAll(members);
 
-        Arrays.sort(collectionToReturn.toArray(), comparator);
-
-        return collectionToReturn;
+        return Collections.unmodifiableSortedSet(collectionToReturn);
     }
 
     @Override
@@ -64,7 +58,6 @@ public class Gym implements GymAPI {
         }
 
         members.add(member);
-        capacity++;
     }
 
     @Override
@@ -78,7 +71,6 @@ public class Gym implements GymAPI {
         }
 
         this.members.addAll(members);
-        capacity += members.size();
     }
 
     @Override
@@ -117,6 +109,10 @@ public class Gym implements GymAPI {
         }
 
         Map<DayOfWeek, List<String>> reportToReturn = HashMap.newHashMap(DayOfWeek.values().length);
+
+        for (DayOfWeek day : DayOfWeek.values()) {
+            reportToReturn.put(day, new ArrayList<>());
+        }
 
         for (GymMember member : members) {
             Set<Map.Entry<DayOfWeek, Workout>> entries = member.getTrainingProgram().entrySet();
