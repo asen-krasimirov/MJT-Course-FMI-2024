@@ -12,9 +12,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
 
-public class Member implements Comparable<GymMember>, GymMember {
+public class Member implements GymMember, Comparable<GymMember> {
 
     private final Address address;
     private final String name;
@@ -38,7 +39,25 @@ public class Member implements Comparable<GymMember>, GymMember {
             return 1;
         }
 
-        return this.getPersonalIdNumber().compareTo(other.getPersonalIdNumber());
+        return this.getName().compareTo(other.getName());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof GymMember gymMember)) {
+            return false;
+        }
+
+        return getPersonalIdNumber().equals(gymMember.getPersonalIdNumber());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getPersonalIdNumber());
     }
 
     @Override

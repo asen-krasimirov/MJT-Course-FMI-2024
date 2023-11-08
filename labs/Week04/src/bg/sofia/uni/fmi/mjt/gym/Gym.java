@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.SortedSet;
@@ -102,17 +103,35 @@ public class Gym implements GymAPI {
         return false;
     }
 
+    private Map<DayOfWeek, List<String>> instantiateDataForAllDays() {
+        Map<DayOfWeek, List<String>> dataForAllDays = HashMap.newHashMap(DayOfWeek.values().length);
+
+        for (DayOfWeek day : DayOfWeek.values()) {
+            dataForAllDays.put(day, new ArrayList<>());
+        }
+
+        return dataForAllDays;
+    }
+
+    private Map<DayOfWeek, List<String>> filterDataForAllDays(Map<DayOfWeek, List<String>> dataForAllDays) {
+        Map<DayOfWeek, List<String>> reportToReturn = new LinkedHashMap<>();
+
+        for (Map.Entry<DayOfWeek, List<String>> entry : dataForAllDays.entrySet()) {
+            if (!entry.getValue().isEmpty()) {
+                reportToReturn.put(entry.getKey(), entry.getValue());
+            }
+        }
+
+        return reportToReturn;
+    }
+
     @Override
     public Map<DayOfWeek, List<String>> getDailyListOfMembersForExercise(String exerciseName) {
         if (exerciseName == null || exerciseName.isEmpty()) {
             throw new IllegalArgumentException("Value of exerciseName shouldn't be null or empty!");
         }
 
-        Map<DayOfWeek, List<String>> reportToReturn = HashMap.newHashMap(DayOfWeek.values().length);
-
-        for (DayOfWeek day : DayOfWeek.values()) {
-            reportToReturn.put(day, new ArrayList<>());
-        }
+        Map<DayOfWeek, List<String>> dataForAllDays = instantiateDataForAllDays();
 
         for (GymMember member : members) {
             Set<Map.Entry<DayOfWeek, Workout>> entries = member.getTrainingProgram().entrySet();
@@ -122,13 +141,16 @@ public class Gym implements GymAPI {
                 for (Exercise exercise : entry.getValue().exercises()) {
 
                     if (exercise.name().compareTo(exerciseName) == 0) {
-                        reportToReturn.get(entry.getKey()).add(member.getName());
+                        dataForAllDays.get(entry.getKey()).add(member.getName());
+                        break;
                     }
 
                 }
 
             }
         }
+
+        Map<DayOfWeek, List<String>> reportToReturn = filterDataForAllDays(dataForAllDays);
 
         return Collections.unmodifiableMap(reportToReturn);
     }
