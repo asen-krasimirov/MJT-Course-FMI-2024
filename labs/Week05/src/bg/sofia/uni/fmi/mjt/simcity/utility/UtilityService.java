@@ -37,7 +37,11 @@ public class UtilityService implements UtilityServiceAPI {
         return Constants.roundUpNumber(totalCost);
     }
 
-    private <T extends Billable> void fillCostDifferences(Map<UtilityType, Double> costDifferences, T firstBillable, T secondBillable) {
+    private <T extends Billable> void fillCostDifferences(
+        Map<UtilityType, Double> costDifferences,
+        T firstBillable,
+        T secondBillable
+    ) {
         if (costDifferences == null) {
             throw new IllegalArgumentException("Value of costDifferences shouldn't be null!");
         }
