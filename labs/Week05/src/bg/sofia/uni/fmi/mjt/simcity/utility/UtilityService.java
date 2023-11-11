@@ -10,6 +10,12 @@ import java.util.Map;
 
 public class UtilityService implements UtilityServiceAPI {
 
+    private final Map<UtilityType, Double> taxRates;
+
+    public UtilityService(Map<UtilityType, Double> taxRates) {
+        this.taxRates = Map.copyOf(taxRates);
+    }
+
     @Override
     public <T extends Billable> double getUtilityCosts(UtilityType utilityType, T billable) {
         if (utilityType == null || billable == null) {
@@ -22,6 +28,8 @@ public class UtilityService implements UtilityServiceAPI {
             case NATURAL_GAS -> billable.getNaturalGasConsumption();
         };
 
+        utilityCost *= taxRates.get(utilityType);
+
         return Constants.roundUpNumber(utilityCost);
     }
 
@@ -31,8 +39,9 @@ public class UtilityService implements UtilityServiceAPI {
             throw new IllegalArgumentException("Value of billable shouldn't be null!");
         }
 
-        double totalCost = billable.getWaterConsumption() + billable.getElectricityConsumption() +
-            billable.getNaturalGasConsumption();
+        double totalCost = billable.getWaterConsumption() * taxRates.get(UtilityType.WATER) +
+            billable.getElectricityConsumption() * taxRates.get(UtilityType.ELECTRICITY) +
+            billable.getNaturalGasConsumption() * taxRates.get(UtilityType.NATURAL_GAS);
 
         return Constants.roundUpNumber(totalCost);
     }
@@ -49,23 +58,24 @@ public class UtilityService implements UtilityServiceAPI {
         costDifferences.put(UtilityType.WATER,
             Constants.roundUpNumber(
                 Math.abs(
-                    firstBillable.getWaterConsumption() - secondBillable.getWaterConsumption()
+                    getUtilityCosts(UtilityType.WATER, firstBillable) -
+                    getUtilityCosts(UtilityType.WATER, secondBillable)
                 )
             )
         );
-
         costDifferences.put(UtilityType.ELECTRICITY,
             Constants.roundUpNumber(
                 Math.abs(
-                    firstBillable.getElectricityConsumption() - secondBillable.getElectricityConsumption()
+                    getUtilityCosts(UtilityType.ELECTRICITY, firstBillable) -
+                    getUtilityCosts(UtilityType.ELECTRICITY, secondBillable)
                 )
             )
         );
-
         costDifferences.put(UtilityType.NATURAL_GAS,
             Constants.roundUpNumber(
                 Math.abs(
-                    firstBillable.getNaturalGasConsumption() - secondBillable.getNaturalGasConsumption()
+                    getUtilityCosts(UtilityType.NATURAL_GAS, firstBillable) -
+                    getUtilityCosts(UtilityType.NATURAL_GAS, secondBillable)
                 )
             )
         );
