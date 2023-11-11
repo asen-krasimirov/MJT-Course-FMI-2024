@@ -1,7 +1,5 @@
 package bg.sofia.uni.fmi.mjt.simcity.utility;
 
-import bg.sofia.uni.fmi.mjt.simcity.constants.Constants;
-
 import bg.sofia.uni.fmi.mjt.simcity.property.billable.Billable;
 
 import java.util.Collections;
@@ -30,7 +28,7 @@ public class UtilityService implements UtilityServiceAPI {
 
         utilityCost *= taxRates.get(utilityType);
 
-        return Constants.roundUpNumber(utilityCost);
+        return utilityCost;
     }
 
     @Override
@@ -39,11 +37,9 @@ public class UtilityService implements UtilityServiceAPI {
             throw new IllegalArgumentException("Value of billable shouldn't be null!");
         }
 
-        double totalCost = billable.getWaterConsumption() * taxRates.get(UtilityType.WATER) +
+        return billable.getWaterConsumption() * taxRates.get(UtilityType.WATER) +
             billable.getElectricityConsumption() * taxRates.get(UtilityType.ELECTRICITY) +
             billable.getNaturalGasConsumption() * taxRates.get(UtilityType.NATURAL_GAS);
-
-        return Constants.roundUpNumber(totalCost);
     }
 
     private <T extends Billable> void fillCostDifferences(
@@ -56,27 +52,21 @@ public class UtilityService implements UtilityServiceAPI {
         }
 
         costDifferences.put(UtilityType.WATER,
-            Constants.roundUpNumber(
-                Math.abs(
-                    getUtilityCosts(UtilityType.WATER, firstBillable) -
-                    getUtilityCosts(UtilityType.WATER, secondBillable)
-                )
+            Math.abs(
+                getUtilityCosts(UtilityType.WATER, firstBillable) -
+                getUtilityCosts(UtilityType.WATER, secondBillable)
             )
         );
         costDifferences.put(UtilityType.ELECTRICITY,
-            Constants.roundUpNumber(
-                Math.abs(
-                    getUtilityCosts(UtilityType.ELECTRICITY, firstBillable) -
-                    getUtilityCosts(UtilityType.ELECTRICITY, secondBillable)
-                )
+            Math.abs(
+                getUtilityCosts(UtilityType.ELECTRICITY, firstBillable) -
+                getUtilityCosts(UtilityType.ELECTRICITY, secondBillable)
             )
         );
         costDifferences.put(UtilityType.NATURAL_GAS,
-            Constants.roundUpNumber(
-                Math.abs(
-                    getUtilityCosts(UtilityType.NATURAL_GAS, firstBillable) -
-                    getUtilityCosts(UtilityType.NATURAL_GAS, secondBillable)
-                )
+            Math.abs(
+                getUtilityCosts(UtilityType.NATURAL_GAS, firstBillable) -
+                getUtilityCosts(UtilityType.NATURAL_GAS, secondBillable)
             )
         );
     }

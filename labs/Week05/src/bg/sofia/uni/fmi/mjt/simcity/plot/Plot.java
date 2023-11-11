@@ -5,7 +5,6 @@ import bg.sofia.uni.fmi.mjt.simcity.exception.BuildableNotFoundException;
 import bg.sofia.uni.fmi.mjt.simcity.exception.InsufficientPlotAreaException;
 import bg.sofia.uni.fmi.mjt.simcity.property.buildable.Buildable;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -56,7 +55,7 @@ public class Plot<E extends Buildable> implements PlotAPI<E> {
         Set<Entry<String, E>> entries = buildables.entrySet();
 
         for (Entry<String, E> entry : entries) {
-            if (buildables.containsKey(entry.getKey())) {
+            if (this.buildables.containsKey(entry.getKey())) {
                 throw new BuildableAlreadyExistsException("Address is already occupied on the plot!");
             }
 
@@ -93,7 +92,7 @@ public class Plot<E extends Buildable> implements PlotAPI<E> {
 
     @Override
     public Map<String, E> getAllBuildables() {
-        return Collections.unmodifiableMap(buildables);
+        return Map.copyOf(buildables);
     }
 
     @Override
