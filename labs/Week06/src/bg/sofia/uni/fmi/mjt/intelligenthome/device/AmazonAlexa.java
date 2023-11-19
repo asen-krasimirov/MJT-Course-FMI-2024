@@ -8,10 +8,6 @@ public class AmazonAlexa extends IoTDeviceBase {
 
     public AmazonAlexa(String name, double powerConsumption, LocalDateTime installationDateTime) {
         super(name, powerConsumption, installationDateTime);
-        // super.setType(DeviceType.SMART_SPEAKER);
-        // super.setDeviceID(uniqueNumberDevice);
-        // = super.deviceID;
-
 
         type = DeviceType.SMART_SPEAKER;
         alexaID = type.getShortName() + '-' + name + '-' + uniqueNumberDevice;

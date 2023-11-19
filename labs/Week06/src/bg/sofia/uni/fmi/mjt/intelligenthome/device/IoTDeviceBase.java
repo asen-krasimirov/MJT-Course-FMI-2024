@@ -19,11 +19,6 @@ public abstract class IoTDeviceBase implements IoTDevice {
     @Override
     public abstract String getId();
 
-    //	public void setDeviceID(int uniqueNumber)
-    //	{
-    //		deviceID = deviceID + uniqueNumber;
-    //	}
-
     @Override
     public String getName() {
         return name;
