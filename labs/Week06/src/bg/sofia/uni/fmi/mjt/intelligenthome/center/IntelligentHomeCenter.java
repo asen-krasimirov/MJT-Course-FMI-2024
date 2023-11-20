@@ -22,13 +22,6 @@ public class IntelligentHomeCenter {
         this.storage = storage;
     }
 
-    /**
-     * Adds a @device to the IntelligentHomeCenter.
-     *
-     * @throws IllegalArgumentException         in case @device is null.
-     * @throws DeviceAlreadyRegisteredException in case the @device is already
-     *                                          registered.
-     */
     public void register(IoTDevice device) throws DeviceAlreadyRegisteredException {
         if (device == null) {
             throw new IllegalArgumentException("device cannot be null");
@@ -42,12 +35,6 @@ public class IntelligentHomeCenter {
         device.setRegistration(LocalDateTime.now());
     }
 
-    /**
-     * Removes the @device from the IntelligentHomeCenter.
-     *
-     * @throws IllegalArgumentException in case null is passed.
-     * @throws DeviceNotFoundException  in case the @device is not found.
-     */
     public void unregister(IoTDevice device) throws DeviceNotFoundException {
         if (device == null) {
             throw new IllegalArgumentException("device cannot be null");
@@ -60,12 +47,6 @@ public class IntelligentHomeCenter {
         storage.delete(device.getId());
     }
 
-    /**
-     * Returns a IoTDevice with an ID @id if found.
-     *
-     * @throws IllegalArgumentException in case @id is null or empty.
-     * @throws DeviceNotFoundException  in case device with ID @id is not found.
-     */
     public IoTDevice getDeviceById(String id) throws DeviceNotFoundException {
         if (id == null || id.isEmpty()) {
             throw new IllegalArgumentException("device cannot be null");
@@ -78,12 +59,6 @@ public class IntelligentHomeCenter {
         }
     }
 
-    /**
-     * Returns the total number of devices with type @type registered in
-     * SmartCityHub.
-     *
-     * @throws IllegalArgumentException in case @type is null.
-     */
     public int getDeviceQuantityPerType(DeviceType type) {
         if (type == null) {
             throw new IllegalArgumentException("type cannot be null");
