@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 public abstract class IoTDeviceBase implements IoTDevice {
+
     static int uniqueNumberDevice = 0;
     String name;
     double powerConsumption;

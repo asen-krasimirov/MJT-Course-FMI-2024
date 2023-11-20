@@ -15,6 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class IntelligentHomeCenter {
+
     DeviceStorage storage;
 
     public IntelligentHomeCenter(DeviceStorage storage) {

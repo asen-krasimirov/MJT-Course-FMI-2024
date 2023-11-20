@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MapDeviceStorage implements DeviceStorage {
+
     private final Map<String, IoTDevice> devices;
 
     public MapDeviceStorage() {
@@ -41,4 +42,5 @@ public class MapDeviceStorage implements DeviceStorage {
     public Collection<IoTDevice> listAll() {
         return devices.values();
     }
+
 }

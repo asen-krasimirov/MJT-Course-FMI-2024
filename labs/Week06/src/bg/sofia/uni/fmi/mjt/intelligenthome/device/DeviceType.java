@@ -1,6 +1,7 @@
 package bg.sofia.uni.fmi.mjt.intelligenthome.device;
 
 public enum DeviceType {
+
     SMART_SPEAKER("SPKR"), BULB("BLB"), THERMOSTAT("TMST");
 
     private String shortName = "";
@@ -12,4 +13,5 @@ public enum DeviceType {
     public String getShortName() {
         return shortName;
     }
+
 }

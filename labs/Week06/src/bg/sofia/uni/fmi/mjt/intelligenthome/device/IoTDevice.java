@@ -3,6 +3,7 @@ package bg.sofia.uni.fmi.mjt.intelligenthome.device;
 import java.time.LocalDateTime;
 
 public interface IoTDevice {
+
     /**
      * Returns the ID of the device.
      */
@@ -36,4 +37,5 @@ public interface IoTDevice {
     public void setRegistration(LocalDateTime registration);
 
     public long getPowerConsumptionKWh();
+
 }

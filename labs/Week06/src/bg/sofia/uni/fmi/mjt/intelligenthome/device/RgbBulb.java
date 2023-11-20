@@ -3,6 +3,7 @@ package bg.sofia.uni.fmi.mjt.intelligenthome.device;
 import java.time.LocalDateTime;
 
 public class RgbBulb extends IoTDeviceBase {
+
     private String bulbID;
     DeviceType type;
 

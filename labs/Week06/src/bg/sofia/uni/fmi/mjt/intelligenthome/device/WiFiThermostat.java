@@ -3,6 +3,7 @@ package bg.sofia.uni.fmi.mjt.intelligenthome.device;
 import java.time.LocalDateTime;
 
 public class WiFiThermostat extends IoTDeviceBase {
+
     private String thermostatID;
     private DeviceType type;
 
