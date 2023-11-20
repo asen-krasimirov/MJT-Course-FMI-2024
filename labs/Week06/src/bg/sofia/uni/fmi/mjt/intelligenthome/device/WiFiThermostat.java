@@ -10,7 +10,7 @@ public class WiFiThermostat extends IoTDeviceBase {
         super(name, powerConsumption, installationDateTime);
 
         type = DeviceType.THERMOSTAT;
-        thermostatID = type.getShortName()+'-'+name+'-'+uniqueNumberDevice;
+        thermostatID = type.getShortName() + '-' + name + '-' + uniqueNumberDevice;
     }
 
     @Override

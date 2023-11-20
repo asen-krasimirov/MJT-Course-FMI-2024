@@ -50,7 +50,7 @@ public abstract class IoTDeviceBase implements IoTDevice {
     @Override
     public long getPowerConsumptionKWh() {
         long duration = Duration.between(getInstallationDateTime(), LocalDateTime.now()).toHours();
-        return (long) (duration *  powerConsumption);
+        return (long) (duration *  getPowerConsumption());
     }
 
 }
