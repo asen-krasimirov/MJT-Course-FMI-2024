@@ -9,7 +9,11 @@ import bg.sofia.uni.fmi.mjt.intelligenthome.center.exceptions.DeviceNotFoundExce
 import bg.sofia.uni.fmi.mjt.intelligenthome.storage.DeviceStorage;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 public class IntelligentHomeCenter {
     DeviceStorage storage;
@@ -61,8 +65,7 @@ public class IntelligentHomeCenter {
 
         if (storage.exists(id)) {
             return storage.get(id);
-        }
-        else {
+        } else {
             throw new DeviceNotFoundException("device not found");
         }
     }
@@ -76,7 +79,7 @@ public class IntelligentHomeCenter {
     public int getDeviceQuantityPerType(DeviceType type) {
         int quantity = 0;
 
-        for (IoTDevice value:storage.listAll()) {
+        for (IoTDevice value : storage.listAll()) {
             if (value.getType().getShortName().equals(type.getShortName())) {
                 quantity++;
             }
@@ -98,8 +101,8 @@ public class IntelligentHomeCenter {
         if (n >= list.size()) {
             n = list.size();
         }
-        List<String> arrList = new ArrayList<String>();
-        for (int i=0; i<n; i++) {
+        List<String> arrList = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
             arrList.add(list.get(i).getId());
         }
         return arrList;
@@ -112,13 +115,12 @@ public class IntelligentHomeCenter {
 
         List<IoTDevice> list = new LinkedList<>();
 
-
         for (IoTDevice value : storage.listAll()) {
             list.add(value);
         }
 
         RegistrationComparator compareReg = new RegistrationComparator();
-        Collections.sort(list,compareReg);
+        Collections.sort(list, compareReg);
 
         List<IoTDevice> arrList = new ArrayList<>();
 
@@ -133,28 +135,4 @@ public class IntelligentHomeCenter {
         return arrList;
     }
 
-//  Comparator<IoTDevice> comparatorKWh = new Comparator<IoTDevice>()
-//	{
-//		public int compare(IoTDevice firstDevice, IoTDevice secondDevice)
-//		{
-//			long hoursFirstDevice = Duration.between(firstDevice.getInstallationDateTime(), LocalDateTime.now()).toHours();
-//			long hoursSecondDevice = Duration.between(secondDevice.getInstallationDateTime(), LocalDateTime.now()).toHours();
-//			double firstDeviceConsumption = firstDevice.getPowerConsumption();
-//			double secondDeviceConsumption = secondDevice.getPowerConsumption();
-//
-//			if (firstDeviceConsumption * hoursFirstDevice > secondDeviceConsumption*hoursSecondDevice)
-//			{
-//				return 1;
-//			}
-//			else if (firstDeviceConsumption * hoursFirstDevice < secondDeviceConsumption*hoursSecondDevice)
-//			{
-//				return -1;
-//			}
-//			else
-//			{
-//				return 0;
-//			}
-//
-//		}
-//	};
 }
