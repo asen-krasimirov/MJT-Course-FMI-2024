@@ -7,10 +7,6 @@ import org.junit.jupiter.api.Assertions;
 
 import java.time.LocalDateTime;
 
-import static org.mockito.Mockito.*;
-
-import org.mockito.Mock;
-
 public class IoTDeviceBaseTest {
 
     static IoTDeviceBase device;

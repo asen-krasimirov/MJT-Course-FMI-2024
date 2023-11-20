@@ -11,7 +11,6 @@ import bg.sofia.uni.fmi.mjt.intelligenthome.storage.DeviceStorage;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -92,19 +91,22 @@ public class IntelligentHomeCenter {
         if (n < 0) {
             throw new IllegalArgumentException();
         }
-        List<IoTDevice> list = new LinkedList<>();
-        for (IoTDevice value : storage.listAll()) {
-            list.add(value);
-        }
+
+        List<IoTDevice> list = new LinkedList<>(storage.listAll());
+
         KWhComparator compareKWh = new KWhComparator();
-        Collections.sort(list, compareKWh);
+        list.sort(compareKWh);
+
         if (n >= list.size()) {
             n = list.size();
         }
+
         List<String> arrList = new ArrayList<>();
+
         for (int i = 0; i < n; i++) {
             arrList.add(list.get(i).getId());
         }
+
         return arrList;
     }
 
@@ -113,14 +115,10 @@ public class IntelligentHomeCenter {
             throw new IllegalArgumentException();
         }
 
-        List<IoTDevice> list = new LinkedList<>();
-
-        for (IoTDevice value : storage.listAll()) {
-            list.add(value);
-        }
+        List<IoTDevice> list = new LinkedList<>(storage.listAll());
 
         RegistrationComparator compareReg = new RegistrationComparator();
-        Collections.sort(list, compareReg);
+        list.sort(compareReg);
 
         List<IoTDevice> arrList = new ArrayList<>();
 
