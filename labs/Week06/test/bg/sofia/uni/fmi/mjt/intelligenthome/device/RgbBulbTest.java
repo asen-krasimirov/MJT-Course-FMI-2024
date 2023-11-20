@@ -1,8 +1,9 @@
 package bg.sofia.uni.fmi.mjt.intelligenthome.device;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 
 import java.time.LocalDateTime;
 
@@ -12,10 +13,13 @@ public class RgbBulbTest {
 
     @BeforeAll
     static void setUpTestCase() {
-        IoTDeviceBase.uniqueNumberDevice = 0;
-
         LocalDateTime localDateTime = LocalDateTime.of(2023, 11, 18, 17, 36);
         device = new RgbBulb("Device1", 10, localDateTime);
+    }
+
+    @AfterAll
+    static void tearDownTestCase() {
+        IoTDeviceBase.uniqueNumberDevice = 0;
     }
 
     @Test
