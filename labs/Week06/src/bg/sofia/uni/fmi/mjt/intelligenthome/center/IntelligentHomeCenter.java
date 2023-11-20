@@ -34,6 +34,10 @@ public class IntelligentHomeCenter {
             throw new IllegalArgumentException("device cannot be null");
         }
 
+        if (storage.exists(device.getId())) {
+            throw new DeviceAlreadyRegisteredException("device already registered");
+        }
+
         storage.store(device.getId(), device);
         device.setRegistration(LocalDateTime.now());
     }
@@ -49,6 +53,10 @@ public class IntelligentHomeCenter {
             throw new IllegalArgumentException("device cannot be null");
         }
 
+        if (!storage.exists(device.getId())) {
+            throw new DeviceNotFoundException("device not registered yet");
+        }
+
         storage.delete(device.getId());
     }
 
@@ -59,7 +67,7 @@ public class IntelligentHomeCenter {
      * @throws DeviceNotFoundException  in case device with ID @id is not found.
      */
     public IoTDevice getDeviceById(String id) throws DeviceNotFoundException {
-        if (id == null) {
+        if (id == null || id.isEmpty()) {
             throw new IllegalArgumentException("device cannot be null");
         }
 
@@ -77,6 +85,10 @@ public class IntelligentHomeCenter {
      * @throws IllegalArgumentException in case @type is null.
      */
     public int getDeviceQuantityPerType(DeviceType type) {
+        if (type == null) {
+            throw new IllegalArgumentException("type cannot be null");
+        }
+
         int quantity = 0;
 
         for (IoTDevice value : storage.listAll()) {
