@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class MapDeviceStorage implements DeviceStorage {
 
-    private final Map<String, IoTDevice> devices;
+    private Map<String, IoTDevice> devices;
 
     public MapDeviceStorage() {
         devices = new HashMap<>();

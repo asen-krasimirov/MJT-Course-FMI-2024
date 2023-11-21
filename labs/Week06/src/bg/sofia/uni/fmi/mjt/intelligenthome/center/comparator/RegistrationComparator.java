@@ -8,7 +8,7 @@ public class RegistrationComparator implements Comparator<IoTDevice> {
 
     @Override
     public int compare(IoTDevice firstDevice, IoTDevice secondDevice) {
-        return Long.compare(firstDevice.getRegistration(), secondDevice.getRegistration());
+        return (int) (firstDevice.getRegistration() - secondDevice.getRegistration());
     }
 
 }

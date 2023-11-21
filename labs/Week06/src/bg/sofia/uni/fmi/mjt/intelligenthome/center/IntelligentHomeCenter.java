@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 public class IntelligentHomeCenter {
@@ -49,8 +48,8 @@ public class IntelligentHomeCenter {
     }
 
     public IoTDevice getDeviceById(String id) throws DeviceNotFoundException {
-        if (id == null || id.isEmpty()) {
-            throw new IllegalArgumentException("device cannot be null");
+        if (id == null || id.isEmpty() || id.isBlank()) {
+            throw new IllegalArgumentException("device cannot be null or empty");
         }
 
         if (storage.exists(id)) {
@@ -77,7 +76,7 @@ public class IntelligentHomeCenter {
     }
 
     private List<IoTDevice> setUpCollectionData() {
-        List<IoTDevice> list = new LinkedList<>();
+        List<IoTDevice> list = new ArrayList<>();
 
         for (IoTDevice value : storage.listAll()) {
             list.add(value);
@@ -96,7 +95,7 @@ public class IntelligentHomeCenter {
         List<IoTDevice> list = setUpCollectionData();
 
         KWhComparator compareKWh = new KWhComparator();
-        list.sort(compareKWh);
+        list.sort(Collections.reverseOrder(compareKWh));
 
         if (n > list.size()) {
             n = list.size();
@@ -121,7 +120,7 @@ public class IntelligentHomeCenter {
         List<IoTDevice> list = setUpCollectionData();
 
         RegistrationComparator compareReg = new RegistrationComparator();
-        Collections.sort(list, compareReg);
+        list.sort(compareReg);
 
         List<IoTDevice> arrList = new ArrayList<>();
 

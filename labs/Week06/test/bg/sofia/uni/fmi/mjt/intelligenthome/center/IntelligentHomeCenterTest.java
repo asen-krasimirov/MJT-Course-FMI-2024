@@ -106,6 +106,12 @@ public class IntelligentHomeCenterTest {
     }
 
     @Test
+    void testGetDeviceByBlankId() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> homeCenter.getDeviceById("  "),
+            "getDeviceById(...) should throw IllegalArgumentException when is called with blank id.");
+    }
+
+    @Test
     void testGetDeviceByIdNotFound() {
         when(storage.exists("SPKR-Device1-0")).thenReturn(false);
 
@@ -201,7 +207,7 @@ public class IntelligentHomeCenterTest {
 
         when(storage.listAll()).thenReturn(devices);
 
-        Collection<String> expectedArr = Arrays.asList("SPKR-Device3-2", "BLB-Device2-1");
+        Collection<String> expectedArr = Arrays.asList("SPKR-Device1-0", "BLB-Device2-1");
 
         Assertions.assertEquals(expectedArr, homeCenter.getTopNDevicesByPowerConsumption(2),
             "getTopNDevicesByPowerConsumption(...) should return the top N devices with the most power consumption.");
@@ -233,7 +239,7 @@ public class IntelligentHomeCenterTest {
 
         when(storage.listAll()).thenReturn(devices);
 
-        Collection<String> expectedArr = Arrays.asList("SPKR-Device3-2", "BLB-Device2-1", "SPKR-Device1-0");
+        Collection<String> expectedArr = Arrays.asList("SPKR-Device1-0", "BLB-Device2-1", "SPKR-Device3-2");
 
         Assertions.assertEquals(expectedArr, homeCenter.getTopNDevicesByPowerConsumption(5),
             "getTopNDevicesByPowerConsumption(...) should return all devices with when n is greater then devices count.");
