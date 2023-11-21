@@ -11,6 +11,7 @@ import bg.sofia.uni.fmi.mjt.intelligenthome.storage.DeviceStorage;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -75,17 +76,29 @@ public class IntelligentHomeCenter {
         return quantity;
     }
 
-    public Collection<String> getTopNDevicesByPowerConsumption(int n) {
-        if (n < 0) {
-            throw new IllegalArgumentException();
+    private List<IoTDevice> setUpCollectionData() {
+        List<IoTDevice> list = new LinkedList<>();
+
+        for (IoTDevice value : storage.listAll()) {
+            list.add(value);
         }
 
-        List<IoTDevice> list = new LinkedList<>(storage.listAll());
+        return list;
+    }
+
+    public Collection<String> getTopNDevicesByPowerConsumption(int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException("n should not be negative");
+        } else if (n == 0) {
+            return new ArrayList<>();
+        }
+
+        List<IoTDevice> list = setUpCollectionData();
 
         KWhComparator compareKWh = new KWhComparator();
         list.sort(compareKWh);
 
-        if (n >= list.size()) {
+        if (n > list.size()) {
             n = list.size();
         }
 
@@ -99,22 +112,24 @@ public class IntelligentHomeCenter {
     }
 
     public Collection<IoTDevice> getFirstNDevicesByRegistration(int n) {
-        if (n <= 0) {
-            throw new IllegalArgumentException();
+        if (n < 0) {
+            throw new IllegalArgumentException("n should not be negative");
+        } else if (n == 0) {
+            return new ArrayList<>();
         }
 
-        List<IoTDevice> list = new LinkedList<>(storage.listAll());
+        List<IoTDevice> list = setUpCollectionData();
 
         RegistrationComparator compareReg = new RegistrationComparator();
-        list.sort(compareReg);
+        Collections.sort(list, compareReg);
 
         List<IoTDevice> arrList = new ArrayList<>();
 
-        if (n >= list.size()) {
+        if (n > list.size()) {
             n = list.size();
         }
 
-        for (int i = 0; i <= n; i++) {
+        for (int i = 0; i < n; i++) {
             arrList.add(list.get(i));
         }
 

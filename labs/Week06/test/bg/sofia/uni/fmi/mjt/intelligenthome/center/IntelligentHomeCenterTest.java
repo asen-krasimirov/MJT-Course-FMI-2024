@@ -18,7 +18,10 @@ import bg.sofia.uni.fmi.mjt.intelligenthome.device.IoTDevice;
 import bg.sofia.uni.fmi.mjt.intelligenthome.center.exceptions.DeviceAlreadyRegisteredException;
 import bg.sofia.uni.fmi.mjt.intelligenthome.center.exceptions.DeviceNotFoundException;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 public class IntelligentHomeCenterTest {
@@ -143,9 +146,6 @@ public class IntelligentHomeCenterTest {
         when(device3.getType()).thenReturn(DeviceType.SMART_SPEAKER);
 
         List<IoTDevice> devices = mock();
-        when(devices.get(0)).thenReturn(device1);
-        when(devices.get(1)).thenReturn(device2);
-        when(devices.get(2)).thenReturn(device3);
 
         Iterator<IoTDevice> devicesIterator;
 
@@ -159,6 +159,156 @@ public class IntelligentHomeCenterTest {
 
         Assertions.assertEquals(2, homeCenter.getDeviceQuantityPerType(DeviceType.SMART_SPEAKER),
             "getDeviceQuantityPerType(...) should return correct quantity per given type.");
+    }
+
+    @Test
+    void testGetTopNDevicesByPowerConsumptionNIsZero() {
+        Collection<String> expectedArr = Arrays.asList();
+
+        Assertions.assertEquals(expectedArr, homeCenter.getTopNDevicesByPowerConsumption(0),
+            "getTopNDevicesByPowerConsumption(...) should return empty array when called with 0.");
+    }
+
+    @Test
+    void testGetTopNDevicesByPowerConsumptionNIsNegative() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> homeCenter.getTopNDevicesByPowerConsumption(-1),
+            "getTopNDevicesByPowerConsumption(..) should throw IllegalArgumentException when is called with negative value of n.");
+    }
+
+    @Test
+    void testGetTopNDevicesByPowerConsumptionNSmallerThenMax() {
+        IoTDevice device1 = mock();
+        when(device1.getPowerConsumptionKWh()).thenReturn((long) 100);
+        when(device1.getId()).thenReturn("SPKR-Device1-0");
+
+        IoTDevice device2 = mock();
+        when(device2.getPowerConsumptionKWh()).thenReturn((long) 101);
+        when(device2.getId()).thenReturn("BLB-Device2-1");
+
+        IoTDevice device3 = mock();
+        when(device3.getPowerConsumptionKWh()).thenReturn((long) 102);
+        when(device3.getId()).thenReturn("SPKR-Device3-2");
+
+        LinkedList<IoTDevice> devices = mock();
+
+        Iterator<IoTDevice> devicesIterator;
+
+        devicesIterator = mock();
+        when(devicesIterator.hasNext()).thenReturn(true, true, true, false);
+        when(devicesIterator.next()).thenReturn(device1).thenReturn(device2).thenReturn(device3);
+
+        when(devices.iterator()).thenReturn(devicesIterator);
+
+        when(storage.listAll()).thenReturn(devices);
+
+        Collection<String> expectedArr = Arrays.asList("SPKR-Device3-2", "BLB-Device2-1");
+
+        Assertions.assertEquals(expectedArr, homeCenter.getTopNDevicesByPowerConsumption(2),
+            "getTopNDevicesByPowerConsumption(...) should return the top N devices with the most power consumption.");
+    }
+
+    @Test
+    void testGetTopNDevicesByPowerConsumptionNGreaterThenMax() {
+        IoTDevice device1 = mock();
+        when(device1.getPowerConsumptionKWh()).thenReturn((long) 100);
+        when(device1.getId()).thenReturn("SPKR-Device1-0");
+
+        IoTDevice device2 = mock();
+        when(device2.getPowerConsumptionKWh()).thenReturn((long) 101);
+        when(device2.getId()).thenReturn("BLB-Device2-1");
+
+        IoTDevice device3 = mock();
+        when(device3.getPowerConsumptionKWh()).thenReturn((long) 102);
+        when(device3.getId()).thenReturn("SPKR-Device3-2");
+
+        LinkedList<IoTDevice> devices = mock();
+
+        Iterator<IoTDevice> devicesIterator;
+
+        devicesIterator = mock();
+        when(devicesIterator.hasNext()).thenReturn(true, true, true, false);
+        when(devicesIterator.next()).thenReturn(device1).thenReturn(device2).thenReturn(device3);
+
+        when(devices.iterator()).thenReturn(devicesIterator);
+
+        when(storage.listAll()).thenReturn(devices);
+
+        Collection<String> expectedArr = Arrays.asList("SPKR-Device3-2", "BLB-Device2-1", "SPKR-Device1-0");
+
+        Assertions.assertEquals(expectedArr, homeCenter.getTopNDevicesByPowerConsumption(5),
+            "getTopNDevicesByPowerConsumption(...) should return all devices with when n is greater then devices count.");
+    }
+
+    @Test
+    void testGetFirstNDevicesByRegistrationNIsZero() {
+        Collection<IoTDevice> expectedArr = Arrays.asList();
+
+        Assertions.assertEquals(expectedArr, homeCenter.getFirstNDevicesByRegistration(0),
+            "getFirstNDevicesByRegistration(...) should return empty array when called with 0.");
+    }
+
+    @Test
+    void testGetFirstNDevicesByRegistrationNIsNegative() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> homeCenter.getFirstNDevicesByRegistration(-1),
+            "getFirstNDevicesByRegistration(..) should throw IllegalArgumentException when is called with negative value of n.");
+    }
+
+    @Test
+    void testGetFirstNDevicesByRegistrationNSmallerThenMax() {
+        IoTDevice device1 = mock();
+        when(device1.getRegistration()).thenReturn((long) 10);
+
+        IoTDevice device2 = mock();
+        when(device2.getRegistration()).thenReturn((long) 11);
+
+        IoTDevice device3 = mock();
+        when(device3.getRegistration()).thenReturn((long) 12);
+
+        LinkedList<IoTDevice> devices = mock();
+
+        Iterator<IoTDevice> devicesIterator;
+
+        devicesIterator = mock();
+        when(devicesIterator.hasNext()).thenReturn(true, true, true, false);
+        when(devicesIterator.next()).thenReturn(device1).thenReturn(device2).thenReturn(device3);
+
+        when(devices.iterator()).thenReturn(devicesIterator);
+
+        when(storage.listAll()).thenReturn(devices);
+
+        Collection<IoTDevice> expectedArr = Arrays.asList(device1, device2);
+
+        Assertions.assertEquals(expectedArr, homeCenter.getFirstNDevicesByRegistration(2),
+            "getFirstNDevicesByRegistration(...) should return the first n devices with the most recent registration.");
+    }
+
+    @Test
+    void testGetFirstNDevicesByRegistrationNGreaterThenMax() {
+        IoTDevice device1 = mock();
+        when(device1.getRegistration()).thenReturn((long) 10);
+
+        IoTDevice device2 = mock();
+        when(device2.getRegistration()).thenReturn((long) 11);
+
+        IoTDevice device3 = mock();
+        when(device3.getRegistration()).thenReturn((long) 12);
+
+        LinkedList<IoTDevice> devices = mock();
+
+        Iterator<IoTDevice> devicesIterator;
+
+        devicesIterator = mock();
+        when(devicesIterator.hasNext()).thenReturn(true, true, true, false);
+        when(devicesIterator.next()).thenReturn(device1).thenReturn(device2).thenReturn(device3);
+
+        when(devices.iterator()).thenReturn(devicesIterator);
+
+        when(storage.listAll()).thenReturn(devices);
+
+        Collection<IoTDevice> expectedArr = Arrays.asList(device1, device2, device3);
+
+        Assertions.assertEquals(expectedArr, homeCenter.getFirstNDevicesByRegistration(5),
+            "getFirstNDevicesByRegistration(...) should return all devices when n is greater then devices count.");
     }
 
 }
