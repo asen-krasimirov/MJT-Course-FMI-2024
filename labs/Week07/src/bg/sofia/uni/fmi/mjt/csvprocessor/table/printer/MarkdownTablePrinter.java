@@ -45,7 +45,6 @@ public class MarkdownTablePrinter implements TablePrinter {
         int i = 0;
         for (; i < headersCount && i < alignments.length; ++i) {
             alignmentRow.append(" ");
-
             if (alignments[i] == ColumnAlignment.LEFT) {
                 alignmentRow.append(":");
                 alignmentRow.append("-".repeat(maxColumnLength[i] - 1));
@@ -56,8 +55,9 @@ public class MarkdownTablePrinter implements TablePrinter {
                 alignmentRow.append(":");
                 alignmentRow.append("-".repeat(maxColumnLength[i] - 2));
                 alignmentRow.append(":");
+            } else if (alignments[i] == ColumnAlignment.NOALIGNMENT) {
+                alignmentRow.append("-".repeat(maxColumnLength[i]));
             }
-
             alignmentRow.append(" |");
         }
 
@@ -70,7 +70,8 @@ public class MarkdownTablePrinter implements TablePrinter {
         formattedRows.add(alignmentRow.toString());
     }
 
-    private void appendRow(ArrayList<ArrayList<String>> columnsData, int rowIdx, int[] maxColumnLength, Collection<String> formattedRows) {
+    private void appendRow(ArrayList<ArrayList<String>> columnsData, int rowIdx, int[] maxColumnLength,
+                           Collection<String> formattedRows) {
         StringBuilder row = new StringBuilder("|");
 
         for (int columnIdx = 0; columnIdx < columnsData.size(); ++columnIdx) {
