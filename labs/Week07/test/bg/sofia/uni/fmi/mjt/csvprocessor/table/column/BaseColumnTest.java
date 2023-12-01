@@ -58,7 +58,7 @@ public class BaseColumnTest {
         Assertions.assertFalse(result.isEmpty());
         Assertions.assertIterableEquals(expectedResult, result, "getData(...) should return correct date then called.");
         Assertions.assertThrows(UnsupportedOperationException.class, () -> result.add("test4"),
-            "getData(...) result should be able to be modified.");
+            "getData(...) result should not be able to be modified.");
     }
 
 }

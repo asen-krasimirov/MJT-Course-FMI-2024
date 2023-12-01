@@ -81,7 +81,7 @@ public class BaseTableTest {
         Assertions.assertIterableEquals(expectedResult, result,
             "getColumnNames() should return correct date then called.");
         Assertions.assertThrows(UnsupportedOperationException.class, () -> result.add("test4"),
-            "getColumnNames() result should be able to be modified.");
+            "getColumnNames() result should not be able to be modified.");
     }
 
     @Test
@@ -145,7 +145,7 @@ public class BaseTableTest {
         Assertions.assertIterableEquals(expectedResult, result,
             "getColumnData(...) should return correct date then called with correct column header.");
         Assertions.assertThrows(UnsupportedOperationException.class, () -> result.add("test4"),
-            "getColumnData(...) result should be able to be modified.");
+            "getColumnData(...) result should not be able to be modified.");
     }
 
     @Test
