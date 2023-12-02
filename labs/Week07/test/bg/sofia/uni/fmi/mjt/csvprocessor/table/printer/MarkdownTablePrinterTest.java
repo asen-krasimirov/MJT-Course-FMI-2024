@@ -23,15 +23,16 @@ public class MarkdownTablePrinterTest {
 
     @Test
     void testPrintTableWithOnlyHeaders() {
-        Assertions.assertDoesNotThrow(() -> baseTable.addData(new String[] {"header1", "header2"}),
+        Assertions.assertDoesNotThrow(
+            () -> baseTable.addData(new String[] {"header1", "header2", "header3", "header4"}),
             "addData(...) should not throw when called with correct data.");
 
         Collection<String> expectedResult = new ArrayList<>();
-        expectedResult.add("| header1 | header2 |");
-        expectedResult.add("| :------ | :-----: |");
+        expectedResult.add("| header1 | header2 | header3 | header4 |");
+        expectedResult.add("| :------ | :-----: | ------- | ------: |");
 
         Collection<String> result = markdownTablePrinter.printTable(baseTable, ColumnAlignment.LEFT,
-            ColumnAlignment.CENTER);
+            ColumnAlignment.CENTER, ColumnAlignment.NOALIGNMENT, ColumnAlignment.RIGHT);
 
         Assertions.assertFalse(result.isEmpty());
         Assertions.assertIterableEquals(expectedResult, result,

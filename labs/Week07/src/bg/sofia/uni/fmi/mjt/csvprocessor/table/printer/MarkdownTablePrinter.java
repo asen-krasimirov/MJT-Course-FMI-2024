@@ -47,13 +47,13 @@ public class MarkdownTablePrinter implements TablePrinter {
             alignmentRow.append(" ");
             if (alignments[i] == ColumnAlignment.LEFT) {
                 alignmentRow.append(":");
-                alignmentRow.append("-".repeat(maxColumnLength[i] - 1));
+                alignmentRow.append("-".repeat(maxColumnLength[i] - alignments[i].getAlignmentCharactersCount()));
             } else if (alignments[i] == ColumnAlignment.RIGHT) {
-                alignmentRow.append("-".repeat(maxColumnLength[i] - 1));
+                alignmentRow.append("-".repeat(maxColumnLength[i] - alignments[i].getAlignmentCharactersCount()));
                 alignmentRow.append(":");
             } else if (alignments[i] == ColumnAlignment.CENTER) {
                 alignmentRow.append(":");
-                alignmentRow.append("-".repeat(maxColumnLength[i] - 2));
+                alignmentRow.append("-".repeat(maxColumnLength[i] - alignments[i].getAlignmentCharactersCount()));
                 alignmentRow.append(":");
             } else if (alignments[i] == ColumnAlignment.NOALIGNMENT) {
                 alignmentRow.append("-".repeat(maxColumnLength[i]));
@@ -96,12 +96,14 @@ public class MarkdownTablePrinter implements TablePrinter {
 
         Collection<String> formattedRows = new ArrayList<>();
 
-        appendHeadersRow(headers, maxColumnLength, formattedRows);
+        if (!headers.isEmpty()) {
+            appendHeadersRow(headers, maxColumnLength, formattedRows);
 
-        appendAlignmentRow(alignments, headers.size(), maxColumnLength, formattedRows);
+            appendAlignmentRow(alignments, headers.size(), maxColumnLength, formattedRows);
 
-        for (int rowIdx = 0; rowIdx < columnsData.get(0).size(); ++rowIdx) {
-            appendRow(columnsData, rowIdx, maxColumnLength, formattedRows);
+            for (int rowIdx = 0; rowIdx < columnsData.get(0).size(); ++rowIdx) {
+                appendRow(columnsData, rowIdx, maxColumnLength, formattedRows);
+            }
         }
 
         return Collections.unmodifiableCollection(formattedRows);
