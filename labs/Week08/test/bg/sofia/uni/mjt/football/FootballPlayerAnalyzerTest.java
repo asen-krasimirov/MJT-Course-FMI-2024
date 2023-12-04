@@ -189,7 +189,7 @@ public class FootballPlayerAnalyzerTest {
 
     @Test
     void getTopProspectPlayerForPositionInBudgetWithCorrectData() {
-        Player expectedResult = testPlayers.get(0);
+        Player expectedResult = testPlayers.get(3);
 
         Optional<Player> result =
             footballPlayerAnalyzer.getTopProspectPlayerForPositionInBudget(Position.ST, 120000000);
@@ -234,19 +234,37 @@ public class FootballPlayerAnalyzerTest {
         Player player = new Player("Tony", "Tony Soprano",
             LocalDate.of(1999, 1, 10), 24,
             100, 100,
-            List.of(Position.RW), "England",
-            85, 90,
+            List.of(Position.ST), "England",
+            91, 90,
             1000, 1000,
             Foot.LEFT
         );
 
         Set<Player> expectedResult = Set.of(
-            testPlayers.get(0),
-            testPlayers.get(1),
-            testPlayers.get(2),
-            testPlayers.get(3),
-            testPlayers.get(4)
+            testPlayers.get(0)
         );
+
+        Set<Player> result = footballPlayerAnalyzer.getSimilarPlayers(player);
+
+        Assertions.assertEquals(expectedResult, result, "getSimilarPlayers(...) should return correct set.");
+
+        Assertions.assertThrows(UnsupportedOperationException.class,
+            () -> result.add(testPlayers.get(5)),
+            "getSimilarPlayers(...) should return unmodifiable set.");
+    }
+
+    @Test
+    void getSimilarPlayersWithNoResults() {
+        Player player = new Player("Tony", "Tony Soprano",
+            LocalDate.of(1999, 1, 10), 24,
+            100, 100,
+            List.of(Position.GK), "England",
+            150, 90,
+            1000, 1000,
+            Foot.LEFT
+        );
+
+        Set<Player> expectedResult = Set.of();
 
         Set<Player> result = footballPlayerAnalyzer.getSimilarPlayers(player);
 
@@ -260,9 +278,7 @@ public class FootballPlayerAnalyzerTest {
     @Test
     void getSimilarPlayersWithPlayerInDataSet() {
         Set<Player> expectedResult = Set.of(
-            testPlayers.get(0),
-            testPlayers.get(3),
-            testPlayers.get(5)
+            testPlayers.get(0)
         );
 
         Set<Player> result = footballPlayerAnalyzer.getSimilarPlayers(testPlayers.get(0));

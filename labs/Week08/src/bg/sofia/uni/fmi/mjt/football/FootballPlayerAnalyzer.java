@@ -90,10 +90,13 @@ public class FootballPlayerAnalyzer {
         return players
             .stream()
             .filter(player -> player.positions().contains(position) && player.valueEuro() <= budget)
-            .map(player -> Map.entry(
-                (player.overallRating() + player.potential()) / player.age(), player)
-            )
-            .findFirst().map(Map.Entry::getValue);
+            .map(player -> {
+                    double result = player.overallRating() + player.potential();
+                    result /= player.age();
+
+                    return Map.entry(result, player);
+            }
+            ).max(Map.Entry.<Double, Player>comparingByKey()).map(Map.Entry::getValue);
     }
 
     public Set<Player> getSimilarPlayers(Player player) {
@@ -106,20 +109,20 @@ public class FootballPlayerAnalyzer {
             .filter(current -> {
                 if (current.positions()
                     .stream()
-                    .anyMatch(player.positions()::contains)
+                    .noneMatch(player.positions()::contains)
                 ) {
-                    return true;
+                    return false;
                 }
 
-                if (current.preferredFoot() == player.preferredFoot()) {
-                    return true;
+                if (current.preferredFoot() != player.preferredFoot()) {
+                    return false;
                 }
 
-                if (Math.abs(current.overallRating() - player.overallRating()) <= TokenIndex.INDEX_THREE.getIndex()) {
-                    return true;
+                if (Math.abs(current.overallRating() - player.overallRating()) > TokenIndex.INDEX_THREE.getIndex()) {
+                    return false;
                 }
 
-                return false;
+                return true;
             })
             .collect(Collectors.toUnmodifiableSet());
     }
