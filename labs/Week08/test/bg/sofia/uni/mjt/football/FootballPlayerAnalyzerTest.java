@@ -1,5 +1,6 @@
 package bg.sofia.uni.mjt.football;
 
+import bg.sofia.uni.fmi.mjt.football.Foot;
 import bg.sofia.uni.fmi.mjt.football.FootballPlayerAnalyzer;
 import bg.sofia.uni.fmi.mjt.football.Player;
 
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.StringReader;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -220,6 +222,58 @@ public class FootballPlayerAnalyzerTest {
             () -> footballPlayerAnalyzer.getTopProspectPlayerForPositionInBudget(Position.ST, -120000000),
             "getTopProspectPlayerForPositionInBudget(...) should throw IllegalArgumentException when called with negative value for budget.");
     }
+
+    @Test
+    void getSimilarPlayersWithNullData() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> footballPlayerAnalyzer.getSimilarPlayers(null),
+            "getSimilarPlayers(...) should throw IllegalArgumentException when value of player is null.");
+    }
+
+    @Test
+    void getSimilarPlayersWithCorrectData() {
+        Player player = new Player("Tony", "Tony Soprano",
+            LocalDate.of(1999, 1, 10), 24,
+            100, 100,
+            List.of(Position.RW), "England",
+            85, 90,
+            1000, 1000,
+            Foot.LEFT
+        );
+
+        Set<Player> expectedResult = Set.of(
+            testPlayers.get(0),
+            testPlayers.get(1),
+            testPlayers.get(2),
+            testPlayers.get(3),
+            testPlayers.get(4)
+        );
+
+        Set<Player> result = footballPlayerAnalyzer.getSimilarPlayers(player);
+
+        Assertions.assertEquals(expectedResult, result, "getSimilarPlayers(...) should return correct set.");
+
+        Assertions.assertThrows(UnsupportedOperationException.class,
+            () -> result.add(testPlayers.get(5)),
+            "getSimilarPlayers(...) should return unmodifiable set.");
+    }
+
+    @Test
+    void getSimilarPlayersWithPlayerInDataSet() {
+        Set<Player> expectedResult = Set.of(
+            testPlayers.get(0),
+            testPlayers.get(3),
+            testPlayers.get(5)
+        );
+
+        Set<Player> result = footballPlayerAnalyzer.getSimilarPlayers(testPlayers.get(0));
+
+        Assertions.assertEquals(expectedResult, result, "getSimilarPlayers(...) should return correct set.");
+
+        Assertions.assertThrows(UnsupportedOperationException.class,
+            () -> result.add(testPlayers.get(5)),
+            "getSimilarPlayers(...) should return unmodifiable set.");
+    }
+
 
     @Test
     void getPlayersByFullNameKeywordNullData() {

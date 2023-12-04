@@ -96,18 +96,32 @@ public class FootballPlayerAnalyzer {
             .findFirst().map(Map.Entry::getValue);
     }
 
-    /**
-     * Returns an unmodifiable set of players that are similar to the provided player. Two players are considered
-     * similar if: 1. there is at least one position in which both of them can play 2. both players prefer the same foot
-     * 3. their overall_rating measures differ by at most 3 (inclusive)
-     * If the dataset contains the provided player, the player will be present in the returned result.
-     *
-     * @param player the player for whom similar players are retrieved. It may or may not be part of the dataset.
-     * @return an unmodifiable set of similar players
-     * @throws IllegalArgumentException if the provided player is null
-     */
     public Set<Player> getSimilarPlayers(Player player) {
-        throw new UnsupportedOperationException("Method not yet implemented");
+        if (player == null) {
+            throw new IllegalArgumentException("Value of player should not be null.");
+        }
+
+        return players
+            .stream()
+            .filter(current -> {
+                if (current.positions()
+                    .stream()
+                    .anyMatch(player.positions()::contains)
+                ) {
+                    return true;
+                }
+
+                if (current.preferredFoot() == player.preferredFoot()) {
+                    return true;
+                }
+
+                if (Math.abs(current.overallRating() - player.overallRating()) <= TokenIndex.INDEX_THREE.getIndex()) {
+                    return true;
+                }
+
+                return false;
+            })
+            .collect(Collectors.toUnmodifiableSet());
     }
 
     public Set<Player> getPlayersByFullNameKeyword(String keyword) {
