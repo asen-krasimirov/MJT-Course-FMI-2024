@@ -69,34 +69,14 @@ public class FootballPlayerAnalyzer {
             .orElseThrow(() -> new NoSuchElementException("No player with provided nationality."));
     }
 
-    /**
-     * Returns a breakdown of players by position. Note that some players can play in more than one position so they
-     * should be present in more than one value Set. If no player plays in a given Position then that position should
-     * not be present as a key in the map.
-     *
-     * @return a Map with key: a Position and value: the set of players in the dataset that can play in that Position,
-     * in undefined order.
-     */
     public Map<Position, Set<Player>> groupByPosition() {
         return players
             .stream()
-            .flatMap(player -> {
-                List<Player> newPlayers = new ArrayList<>();
-
-                for (Position position : player.positions()) {
-                    Player newPlayer = new Player(
-                        player.name(), player.fullName(), player.birthDate(), player.age(), player.heightCm(),
-                        player.weightKg(), List.of(position), player.nationality(), player.overallRating(),
-                        player.potential(), player.valueEuro(), player.wageEuro(), player.preferredFoot()
-                    );
-
-                    newPlayers.add(newPlayer);
-                }
-
-                return Stream.of(newPlayers);
-            })
-            .flatMap(List::stream)
-            .collect(Collectors.groupingBy(player -> player.positions().get(0), Collectors.toSet()));
+            .flatMap(player -> player.positions().stream().map(position -> Map.entry(position, player)))
+            .collect(
+                Collectors.groupingBy(Map.Entry::getKey,
+                    Collectors.mapping(Map.Entry::getValue, Collectors.toSet()))
+            );
     }
 
     /**

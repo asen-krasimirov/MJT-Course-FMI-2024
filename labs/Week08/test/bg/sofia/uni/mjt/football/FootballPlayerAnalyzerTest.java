@@ -58,15 +58,15 @@ public class FootballPlayerAnalyzerTest {
                 System.lineSeparator() +
                 "L. Messi;Lionel Andrés Messi Cuccittini;6/24/1987;31;170.18;72.1;CF,RW,ST;Argentina;94;94;110500000;565000;Left" +
                 System.lineSeparator() +
-//                "C. Eriksen;Christian  Dannemann Eriksen;2/14/1992;27;154.94;76.2;CAM,RM,CM;Denmark;88;89;69500000;205000;Right" +
-//                System.lineSeparator() +
-//                "P. Pogba;Paul Pogba;3/15/1993;25;190.5;83.9;CM,CAM;France;88;91;73000000;255000;Right" +
-//                System.lineSeparator() +
-                "L. Insigne;Lorenzo Insigne;6/4/1991;27;162.56;59;LW,ST;Italy;88;88;62000000;165000;Right"
-//                System.lineSeparator() +
-//                "K. Koulibaly;Kalidou Koulibaly;6/20/1991;27;187.96;88.9;CB;Senegal;88;91;60000000;135000;Right" +
-//                System.lineSeparator() +
-//                "S. Agüero;Sergio Leonel Agüero del Castillo;6/2/1988;30;172.72;69.9;ST;Argentina;89;89;64500000;300000;Right"
+                "C. Eriksen;Christian  Dannemann Eriksen;2/14/1992;27;154.94;76.2;CAM,RM,CM;Denmark;88;89;69500000;205000;Right" +
+                System.lineSeparator() +
+                "P. Pogba;Paul Pogba;3/15/1993;25;190.5;83.9;CM,CAM;France;88;91;73000000;255000;Right" +
+                System.lineSeparator() +
+                "L. Insigne;Lorenzo Insigne;6/4/1991;27;162.56;59;LW,ST;Italy;88;88;62000000;165000;Right" +
+                System.lineSeparator() +
+                "K. Koulibaly;Kalidou Koulibaly;6/20/1991;27;187.96;88.9;CB;Senegal;88;91;60000000;135000;Right" +
+                System.lineSeparator() +
+                "S. Agüero;Sergio Leonel Agüero del Castillo;6/2/1988;30;172.72;69.9;ST;Argentina;89;89;64500000;300000;Right"
         );
 
         footballPlayerAnalyzer = new FootballPlayerAnalyzer(stringReader);
@@ -171,17 +171,16 @@ public class FootballPlayerAnalyzerTest {
     }
 
     @Test
-    void groupByPosition() {
+    void groupByPositionReturnsCorrectData() {
         Map<Position, Set<Player>> expectedResult = Map.of(
             Position.CF, Set.of(testPlayers.get(0)),
             Position.RW, Set.of(testPlayers.get(0)),
-//            Position.ST, Set.of(testPlayers.get(0), testPlayers.get(3), testPlayers.get(5)),
-            Position.ST, Set.of(testPlayers.get(0), testPlayers.get(3)),
-//            Position.CAM, Set.of(testPlayers.get(1), testPlayers.get(2)),
-//            Position.RM, Set.of(testPlayers.get(1)),
-//            Position.CM, Set.of(testPlayers.get(1), testPlayers.get(2)),
-            Position.LW, Set.of(testPlayers.get(3))
-//            Position.CB, Set.of(testPlayers.get(4))
+            Position.ST, Set.of(testPlayers.get(0), testPlayers.get(3), testPlayers.get(5)),
+            Position.CAM, Set.of(testPlayers.get(1), testPlayers.get(2)),
+            Position.RM, Set.of(testPlayers.get(1)),
+            Position.CM, Set.of(testPlayers.get(1), testPlayers.get(2)),
+            Position.LW, Set.of(testPlayers.get(3)),
+            Position.CB, Set.of(testPlayers.get(4))
         );
 
         Map<Position, Set<Player>> result = footballPlayerAnalyzer.groupByPosition();
