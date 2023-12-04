@@ -110,15 +110,15 @@ public class FootballPlayerAnalyzer {
         throw new UnsupportedOperationException("Method not yet implemented");
     }
 
-    /**
-     * Returns an unmodifiable set of players whose full name contains the provided keyword (case-sensitive search)
-     *
-     * @param keyword the keyword that should be contained in player's full name
-     * @return an unmodifiable set of players
-     * @throws IllegalArgumentException if the provided keyword is null
-     */
     public Set<Player> getPlayersByFullNameKeyword(String keyword) {
-        throw new UnsupportedOperationException("Method not yet implemented");
+        if (keyword == null) {
+            throw new IllegalArgumentException("Value of keyword should not be null.");
+        }
+
+        return players
+            .stream()
+            .filter(player -> player.fullName().contains(keyword))
+            .collect(Collectors.toUnmodifiableSet());
     }
 
 }

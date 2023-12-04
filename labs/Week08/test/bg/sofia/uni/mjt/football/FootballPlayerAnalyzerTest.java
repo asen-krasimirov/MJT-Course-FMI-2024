@@ -89,9 +89,7 @@ public class FootballPlayerAnalyzerTest {
             "getAllPlayers(...) should return correct list.");
 
         Assertions.assertThrows(UnsupportedOperationException.class,
-            () -> result.add(Player.of(
-                "V. van Dijk;Virgil van Dijk;7/8/1991;27;193.04;92.1;CB;Netherlands;88;90;59500000;215000;Right"
-            )),
+            () -> result.add(testPlayers.get(0)),
             "getAllPlayers(...) should return unmodifiable list.");
 
     }
@@ -109,19 +107,17 @@ public class FootballPlayerAnalyzerTest {
             "getAllPlayers(...) should return correct list.");
 
         Assertions.assertThrows(UnsupportedOperationException.class,
-            () -> result.add(Player.of(
-                "V. van Dijk;Virgil van Dijk;7/8/1991;27;193.04;92.1;CB;Netherlands;88;90;59500000;215000;Right"
-            )),
+            () -> result.add(testPlayers.get(0)),
             "getAllPlayers(...) should return unmodifiable list.");
     }
 
     @Test
     void testGetAllNationalitiesWithPlayersInDataset() {
-        Set<String> expectedList = Set.of("Argentina", "Denmark", "France", "Italy", "Senegal");
+        Set<String> expectedSet = Set.of("Argentina", "Denmark", "France", "Italy", "Senegal");
 
         Set<String> result = footballPlayerAnalyzer.getAllNationalities();
 
-        Assertions.assertEquals(expectedList, result,
+        Assertions.assertEquals(expectedSet, result,
             "getAllNationalities(...) should return correct set.");
 
         Assertions.assertThrows(UnsupportedOperationException.class,
@@ -134,11 +130,11 @@ public class FootballPlayerAnalyzerTest {
         StringReader stringReader = new StringReader("");
         FootballPlayerAnalyzer footballPlayerAnalyzer1 = new FootballPlayerAnalyzer(stringReader);
 
-        Set<String> expectedList = Set.of();
+        Set<String> expectedSet = Set.of();
 
         Set<String> result = footballPlayerAnalyzer1.getAllNationalities();
 
-        Assertions.assertIterableEquals(expectedList, result,
+        Assertions.assertIterableEquals(expectedSet, result,
             "getAllNationalities(...) should return correct set.");
 
         Assertions.assertThrows(UnsupportedOperationException.class,
@@ -186,6 +182,41 @@ public class FootballPlayerAnalyzerTest {
         Map<Position, Set<Player>> result = footballPlayerAnalyzer.groupByPosition();
 
         Assertions.assertEquals(expectedResult, result, "groupByPosition(...) should return correct result.");
+    }
+
+    @Test
+    void getPlayersByFullNameKeywordNullData() {
+        Assertions.assertThrows(IllegalArgumentException.class,
+            () -> footballPlayerAnalyzer.getPlayersByFullNameKeyword(null),
+            "getPlayersByFullNameKeyword(...) should throw IllegalArgumentException when called with null value.");
+    }
+
+    @Test
+    void getPlayersByFullNameKeywordCorrectData() {
+        Set<Player> expectedSet =
+            Set.of(testPlayers.get(0), testPlayers.get(1), testPlayers.get(3), testPlayers.get(5)
+            );
+
+        Set<Player> result = footballPlayerAnalyzer.getPlayersByFullNameKeyword("ne");
+
+        Assertions.assertEquals(expectedSet, result, "getPlayersByFullNameKeyword(...) should return correct result.");
+
+        Assertions.assertThrows(UnsupportedOperationException.class,
+            () -> result.add(testPlayers.get(2)),
+            "getPlayersByFullNameKeyword(...) should return unmodifiable set.");
+    }
+
+    @Test
+    void getPlayersByFullNameKeywordInvalidData() {
+        Set<Player> expectedSet = Set.of();
+
+        Set<Player> result = footballPlayerAnalyzer.getPlayersByFullNameKeyword("NE");
+
+        Assertions.assertEquals(expectedSet, result, "getPlayersByFullNameKeyword(...) should return correct result.");
+
+        Assertions.assertThrows(UnsupportedOperationException.class,
+            () -> result.add(testPlayers.get(2)),
+            "getPlayersByFullNameKeyword(...) should return unmodifiable set.");
     }
 
 }
