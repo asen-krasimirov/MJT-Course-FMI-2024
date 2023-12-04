@@ -3,14 +3,21 @@ package bg.sofia.uni.fmi.mjt.football;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.io.UncheckedIOException;
+
+import java.util.Comparator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import java.io.UncheckedIOException;
+import java.util.NoSuchElementException;
+import java.util.stream.Stream;
 
 public class FootballPlayerAnalyzer {
 
@@ -50,17 +57,16 @@ public class FootballPlayerAnalyzer {
             .collect(Collectors.toUnmodifiableSet());
     }
 
-    /**
-     * Returns the highest paid player from the provided nationality. If there are two or more players with equal
-     * maximum wage, returns any of them.
-     *
-     * @param nationality the nationality of the player to return
-     * @return the highest paid player
-     * @throws IllegalArgumentException in case the provided nationality is null
-     * @throws NoSuchElementException   in case there is no player with the provided nationality
-     */
     public Player getHighestPaidPlayerByNationality(String nationality) {
-        throw new UnsupportedOperationException("Method not yet implemented");
+        if (nationality == null) {
+            throw new IllegalArgumentException("Value of nationality should not be null.");
+        }
+
+        return players
+            .stream()
+            .filter(player -> Objects.equals(player.nationality(), nationality))
+            .max(Comparator.comparingLong(Player::wageEuro))
+            .orElseThrow(() -> new NoSuchElementException("No player with provided nationality."));
     }
 
     /**
@@ -72,7 +78,25 @@ public class FootballPlayerAnalyzer {
      * in undefined order.
      */
     public Map<Position, Set<Player>> groupByPosition() {
-        throw new UnsupportedOperationException("Method not yet implemented");
+        return players
+            .stream()
+            .flatMap(player -> {
+                List<Player> newPlayers = new ArrayList<>();
+
+                for (Position position : player.positions()) {
+                    Player newPlayer = new Player(
+                        player.name(), player.fullName(), player.birthDate(), player.age(), player.heightCm(),
+                        player.weightKg(), List.of(position), player.nationality(), player.overallRating(),
+                        player.potential(), player.valueEuro(), player.wageEuro(), player.preferredFoot()
+                    );
+
+                    newPlayers.add(newPlayer);
+                }
+
+                return Stream.of(newPlayers);
+            })
+            .flatMap(List::stream)
+            .collect(Collectors.groupingBy(player -> player.positions().get(0), Collectors.toSet()));
     }
 
     /**
