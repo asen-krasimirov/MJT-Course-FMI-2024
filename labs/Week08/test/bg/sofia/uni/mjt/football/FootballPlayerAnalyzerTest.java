@@ -13,6 +13,7 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import java.util.NoSuchElementException;
@@ -182,6 +183,42 @@ public class FootballPlayerAnalyzerTest {
         Map<Position, Set<Player>> result = footballPlayerAnalyzer.groupByPosition();
 
         Assertions.assertEquals(expectedResult, result, "groupByPosition(...) should return correct result.");
+    }
+
+    @Test
+    void getTopProspectPlayerForPositionInBudgetWithCorrectData() {
+        Player expectedResult = testPlayers.get(0);
+
+        Optional<Player> result =
+            footballPlayerAnalyzer.getTopProspectPlayerForPositionInBudget(Position.ST, 120000000);
+
+        Assertions.assertEquals(expectedResult, result.get(),
+            "getTopProspectPlayerForPositionInBudget(...) should return correct data.");
+
+    }
+
+    @Test
+    void getTopProspectPlayerForPositionInBudgetWhenNoPlayerFound() {
+        Optional<Player> result =
+            footballPlayerAnalyzer.getTopProspectPlayerForPositionInBudget(Position.ST, 120);
+
+        Assertions.assertThrows(NoSuchElementException.class, () -> result.get(),
+            "get(...) of Optional<Player> result should throw NoSuchElementException.");
+
+    }
+
+    @Test
+    void getTopProspectPlayerForPositionInBudgetWithNullPosition() {
+        Assertions.assertThrows(IllegalArgumentException.class,
+            () -> footballPlayerAnalyzer.getTopProspectPlayerForPositionInBudget(null, 120000000),
+            "getTopProspectPlayerForPositionInBudget(...) should throw IllegalArgumentException when called with null value for position.");
+    }
+
+    @Test
+    void getTopProspectPlayerForPositionInBudgetWithNegativeBudget() {
+        Assertions.assertThrows(IllegalArgumentException.class,
+            () -> footballPlayerAnalyzer.getTopProspectPlayerForPositionInBudget(Position.ST, -120000000),
+            "getTopProspectPlayerForPositionInBudget(...) should throw IllegalArgumentException when called with negative value for budget.");
     }
 
     @Test

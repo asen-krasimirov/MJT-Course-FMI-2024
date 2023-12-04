@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 
 import java.io.UncheckedIOException;
 import java.util.NoSuchElementException;
-import java.util.stream.Stream;
 
 public class FootballPlayerAnalyzer {
 
@@ -79,21 +78,22 @@ public class FootballPlayerAnalyzer {
             );
     }
 
-    /**
-     * Returns an Optional containing the top prospect player in the dataset that can play in the provided position and
-     * that can be bought with the provided budget considering the player's value_euro. If no player can be bought with
-     * the provided budget then return an empty Optional.
-     * <p>
-     * The player's prospect is calculated by the following formula: Prospect = (r + p) ÷ a where r is the player's
-     * overall rating, p is the player's potential and a is the player's age
-     *
-     * @param position the position in which the player should be able to play
-     * @param budget   the available budget for buying a player
-     * @return an Optional containing the top prospect player
-     * @throws IllegalArgumentException in case the provided position is null or the provided budget is negative
-     */
     public Optional<Player> getTopProspectPlayerForPositionInBudget(Position position, long budget) {
-        throw new UnsupportedOperationException("Method not yet implemented");
+        if (position == null) {
+            throw new IllegalArgumentException("Value of position should not be null.");
+        }
+
+        if (budget < 0) {
+            throw new IllegalArgumentException("Value of budget should not be negative.");
+        }
+
+        return players
+            .stream()
+            .filter(player -> player.positions().contains(position) && player.valueEuro() <= budget)
+            .map(player -> Map.entry(
+                (player.overallRating() + player.potential()) / player.age(), player)
+            )
+            .findFirst().map(Map.Entry::getValue);
     }
 
     /**
