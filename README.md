@@ -12,7 +12,7 @@ A repository for uploading exercises from the FMI MJT (Modern Java Technologies)
 - <a href="https://github.com/fmi/java-course/tree/master/08-lambdas-and-stream-api/lab">Lab 08</a> | <a href="https://github.com/asen-krasimirov/MJT-Course-2024/tree/main/labs/Week08/">solution</a> </br>
 
 ### Homeworks:
-- <a href="https://github.com/fmi/java-course/tree/master/homeworks/01-rideright">Homework 01</a> | <a href="https://github.com/asen-krasimirov/MJT-Course-2024/tree/main/homwworks/Homework01">solution</a></br>
+- <a href="https://github.com/fmi/java-course/tree/master/homeworks/01-rideright">Homework 01</a> | <a href="https://github.com/asen-krasimirov/MJT-Course-FMI-2024/tree/main/homeworks/Homework01">solution</a></br>
 
 ###### * -> The solutions pass all tests, but there are probablly better and cleaner solutions.
 ###### ** -> Should change link urls from 'master' to 'mjt-2023-2024' when the course is over.
