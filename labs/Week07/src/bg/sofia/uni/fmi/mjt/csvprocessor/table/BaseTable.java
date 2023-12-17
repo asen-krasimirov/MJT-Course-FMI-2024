@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class BaseTable implements Table {
 
-    private final ArrayList<String> headers;
+    private final List<String> headers;
     private final Map<String, Column> columns;
 
     public BaseTable() {
