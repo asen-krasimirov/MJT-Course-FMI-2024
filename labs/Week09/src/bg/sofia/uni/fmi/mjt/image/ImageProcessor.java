@@ -49,12 +49,7 @@ public class ImageProcessor implements Runnable {
                 }
             }
 
-            Image imageToProcess;
-
-            imageToProcess = images.peek();
-            images.poll();
-
-            return imageToProcess;
+            return images.poll();
         }
     }
 
