@@ -16,7 +16,8 @@ A repository for uploading exercises from the FMI MJT (Modern Java Technologies)
 </pre>
 
 ### Homeworks:
-- <a href="https://github.com/fmi/java-course/tree/master/homeworks/01-rideright">Homework 01</a> - RideRight 🚏 | <a href="https://github.com/asen-krasimirov/MJT-Course-FMI-2024/tree/main/homeworks/Homework01">solution</a> </br>
+- <a href="https://github.com/fmi/java-course/tree/master/homeworks/01-rideright">Homework 01</a> - RideRight 🚏 | <a href="https://github.com/asen-krasimirov/MJT-Course-FMI-2024/tree/main/homeworks/Homework01">solution</a>*** </br>
 
 ###### * -> The solutions pass all tests, but there are probablly better and cleaner solutions.
 ###### ** -> Should change link urls from 'master' to 'mjt-2023-2024' when the course is over.
+###### *** -> Homework solutions are not always 100/100 solutions.
