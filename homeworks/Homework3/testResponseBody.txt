@@ -1,0 +1,44 @@
+{
+  "from": 1,
+  "to": 1,
+  "count": 1,
+  "_links": {},
+  "hits": [
+    {
+      "recipe": {
+        "label": "Moroccan Spice Mix",
+        "dietLabels": [
+          "Balanced",
+          "Low-Sodium"
+        ],
+        "healthLabels": [
+          "Vegan",
+          "DASH",
+          "Alcohol-Free"
+        ],
+        "ingredientLines": [
+          "1/4 tsp red pepper flakes",
+          "1/2 tsp ground turmeric",
+          "1 tsp sweet paprika"
+        ],
+        "totalWeight": 12.91,
+        "cuisineType": [
+          "middle eastern"
+        ],
+        "mealType": [
+          "lunch/dinner",
+          "snack"
+        ],
+        "dishType": [
+          "main course"
+        ]
+      },
+      "_links": {
+        "self": {
+          "title": "Self",
+          "href": "https://api.edamam.com/api/recipes/v2/c33120f155e1df35fea20f3512f20d94?type=public&app_id=5eca9706&app_key=c1061e0819eab1493a26fac6bfc6cb06"
+        }
+      }
+    }
+  ]
+}
