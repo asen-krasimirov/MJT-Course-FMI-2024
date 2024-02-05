@@ -1,10 +1,5 @@
 package bg.sofia.uni.fmi.mjt.recipe.field;
 
-import bg.sofia.uni.fmi.mjt.recipe.Recipe;
-
-import java.util.Arrays;
-import java.util.Objects;
-
 public enum DietLabel {
 
     BALANCED("balanced"),
