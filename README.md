@@ -12,7 +12,8 @@ A repository for uploading exercises from the FMI MJT (Modern Java Technologies)
 - IO streams and Files:       <a href="https://github.com/fmi/java-course/tree/master/07-io-streams-and-files/lab">Lab 07</a> - CSV Processor 📃 | <a href="https://github.com/asen-krasimirov/MJT-Course-2024/tree/main/labs/Week07/">solution</a> </br>
 - Lambdas and Stream API:     <a href="https://github.com/fmi/java-course/tree/master/08-lambdas-and-stream-api/lab">Lab 08</a> - Football Player Analyzer ⚽ | <a href="https://github.com/asen-krasimirov/MJT-Course-2024/tree/main/labs/Week08/">solution</a> </br>
 - Multithreading:             <a href="https://github.com/fmi/java-course/tree/master/09-threads/lab">Lab 09</a> - Retro Photo Album Maker 📷 | <a href="https://github.com/asen-krasimirov/MJT-Course-2024/tree/main/labs/Week09/">solution</a> </br>
-- Networking:                 <a href="https://github.com/fmi/java-course/tree/master/10-network/lab">Lab 10</a> - T-Shirt Shop 👕 🏬 | <a href="https://github.com/asen-krasimirov/MJT-Course-2024/tree/main/labs/Week10/">solution</a>
+- Networking:                 <a href="https://github.com/fmi/java-course/tree/master/10-network/lab">Lab 10</a> - T-Shirt Shop 👕 🏬 | <a href="https://github.com/asen-krasimirov/MJT-Course-2024/tree/main/labs/Week10/">solution</a> </br>
+- HTTP and Rest:              <a href="https://github.com/fmi/java-course/tree/master/12-http-rest/lab">Lab 11</a> - Cooking Compass 🍝 | <a href="https://github.com/asen-krasimirov/MJT-Course-FMI-2024/tree/main/homeworks/Homework3">solution</a>
 </pre>
 
 ### Homeworks:
