@@ -13,16 +13,12 @@ A repository for uploading exercises from the FMI MJT (Modern Java Technologies)
 - Lambdas and Stream API:     <a href="https://github.com/fmi/java-course/tree/master/08-lambdas-and-stream-api/lab">Lab 08</a> - Football Player Analyzer ⚽ | <a href="https://github.com/asen-krasimirov/MJT-Course-2024/tree/main/labs/Week08/">solution</a> </br>
 - Multithreading:             <a href="https://github.com/fmi/java-course/tree/master/09-threads/lab">Lab 09</a> - Retro Photo Album Maker 📷 | <a href="https://github.com/asen-krasimirov/MJT-Course-2024/tree/main/labs/Week09/">solution</a> </br>
 - Networking:                 <a href="https://github.com/fmi/java-course/tree/master/10-network/lab">Lab 10</a> - T-Shirt Shop 👕 🏬 | <a href="https://github.com/asen-krasimirov/MJT-Course-2024/tree/main/labs/Week10/">solution</a> </br>
-- HTTP and Rest:              <a href="https://github.com/fmi/java-course/tree/master/12-http-rest/lab">Lab 11</a> - Cooking Compass 🍝 | <a href="https://github.com/asen-krasimirov/MJT-Course-FMI-2024/tree/main/homeworks/Homework3">solution</a>
 </pre>
 
 ### Homeworks:
 <pre>
-- <a href="https://github.com/fmi/java-course/tree/master/homeworks/01-rideright">Homework 01</a> - RideRight 🚏 | <a href="https://github.com/asen-krasimirov/MJT-Course-FMI-2024/tree/main/homeworks/Homework01">solution</a>*** </br>
-- <a href="https://github.com/fmi/java-course/tree/master/homeworks/02-spacescanner">Homework 02</a> - Space Scanner 🚀 | <a href="https://github.com/asen-krasimirov/MJT-Course-FMI-2024/tree/main/homeworks/Homework02">solution</a> </br>
-- <a href="https://github.com/fmi/java-course/tree/master/homeworks/03-cookingcompass">Homework 03</a> - Cooking Compass 🍝 | <a href="https://github.com/asen-krasimirov/MJT-Course-FMI-2024/tree/main/homeworks/Homework3">solution</a> </br>
+Will be added after Exam Retake is over.
 </pre>
 
 ###### * The solutions pass all tests, but there are probablly better and cleaner solutions.
 ###### ** Should change link urls from 'master' to 'mjt-2023-2024' when the course is over.
-###### *** Homework solutions are not always 100/100 solutions.
