@@ -17,7 +17,7 @@ A repository for uploading exercises from the FMI MJT (Modern Java Technologies)
 
 ### Homeworks:
 <pre>
-Will be added after Exam Retake is over.
+Will be added after Exam Retake is over. As well as final project (Spotify).
 </pre>
 
 ###### * The solutions pass all tests, but there are probablly better and cleaner solutions.
