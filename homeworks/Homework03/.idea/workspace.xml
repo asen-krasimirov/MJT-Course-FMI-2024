@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="24d86d39-aea3-4440-8392-4b30617e3a4e" name="Changes" comment="returning fileReading for testResponses" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="HTTP Request" />
+        <option value="Enum" />
+        <option value="Record" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2b87iaUxswtvc5kbtqZuE5lJqX9" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/MJT&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.infernus.idea.checkstyle.CheckStyleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\MJT-Private\Homework3\test\bg\sofia\uni\fmi\mjt\response" />
+      <recent name="D:\MJT-Private\Homework3" />
+      <recent name="D:\MJT-Private\Homework3\test" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.All in Homework3">
+    <configuration name="All in Homework3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Homework3" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CookingCompassTest.testSendFindRecipes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Homework3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bg.sofia.uni.fmi.mjt.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="bg.sofia.uni.fmi.mjt" />
+      <option name="MAIN_CLASS_NAME" value="bg.sofia.uni.fmi.mjt.CookingCompassTest" />
+      <option name="METHOD_NAME" value="testSendFindRecipes" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HttpResponseHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Homework3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bg.sofia.uni.fmi.mjt.response.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="bg.sofia.uni.fmi.mjt.response" />
+      <option name="MAIN_CLASS_NAME" value="bg.sofia.uni.fmi.mjt.response.HttpResponseHandlerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UriParserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Homework3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bg.sofia.uni.fmi.mjt.parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="bg.sofia.uni.fmi.mjt.parser" />
+      <option name="MAIN_CLASS_NAME" value="bg.sofia.uni.fmi.mjt.parser.UriParserTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UriParserTest.testParsingUriWithRequiredFields" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Homework3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bg.sofia.uni.fmi.mjt.parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="bg.sofia.uni.fmi.mjt.parser" />
+      <option name="MAIN_CLASS_NAME" value="bg.sofia.uni.fmi.mjt.parser.UriParserTest" />
+      <option name="METHOD_NAME" value="testParsingUriWithRequiredFields" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in Homework3" />
+        <item itemvalue="JUnit.CookingCompassTest.testSendFindRecipes" />
+        <item itemvalue="JUnit.UriParserTest.testParsingUriWithRequiredFields" />
+        <item itemvalue="JUnit.UriParserTest" />
+        <item itemvalue="JUnit.HttpResponseHandlerTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="24d86d39-aea3-4440-8392-4b30617e3a4e" name="Changes" comment="" />
+      <created>1705584982677</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1705584982677</updated>
+      <workItem from="1705584983675" duration="47718000" />
+      <workItem from="1705765601694" duration="965000" />
+      <workItem from="1706714909646" duration="2000" />
+    </task>
+    <task id="LOCAL-00001" summary="initializing homework3">
+      <option name="closed" value="true" />
+      <created>1705590357871</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1705590357871</updated>
+    </task>
+    <task id="LOCAL-00002" summary="add MealType and APIConfig">
+      <option name="closed" value="true" />
+      <created>1705600712053</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1705600712053</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add HealthLabel enum">
+      <option name="closed" value="true" />
+      <created>1705601667263</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1705601667263</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add UriParser">
+      <option name="closed" value="true" />
+      <created>1705601875436</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1705601875436</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add the rest of the health labels">
+      <option name="closed" value="true" />
+      <created>1705614849952</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1705614849952</updated>
+    </task>
+    <task id="LOCAL-00006" summary="adding UriParserTest">
+      <option name="closed" value="true" />
+      <created>1705616602608</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1705616602608</updated>
+    </task>
+    <task id="LOCAL-00007" summary="add APIConfigTest">
+      <option name="closed" value="true" />
+      <created>1705660273078</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1705660273078</updated>
+    </task>
+    <task id="LOCAL-00008" summary="add exceptions">
+      <option name="closed" value="true" />
+      <created>1705693920229</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1705693920229</updated>
+    </task>
+    <task id="LOCAL-00009" summary="add HttpSender">
+      <option name="closed" value="true" />
+      <created>1705693945902</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1705693945902</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Prepare HttpResponseHandler for development and testing">
+      <option name="closed" value="true" />
+      <created>1705706022335</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1705706022335</updated>
+    </task>
+    <task id="LOCAL-00011" summary="add all require fields as enums and move all to fields">
+      <option name="closed" value="true" />
+      <created>1705707776290</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1705707776290</updated>
+    </task>
+    <task id="LOCAL-00012" summary="add equals and hashCode to Recipe">
+      <option name="closed" value="true" />
+      <created>1705708709807</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1705708709807</updated>
+    </task>
+    <task id="LOCAL-00013" summary="adding of to Recipe and refactoring to be with Lists against static Arrays">
+      <option name="closed" value="true" />
+      <created>1705752780545</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1705752780545</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Add HttpResponseHandler and tests for it">
+      <option name="closed" value="true" />
+      <created>1705756829781</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1705756829781</updated>
+    </task>
+    <task id="LOCAL-00015" summary="adding requiredFieldsOnly to UriParser">
+      <option name="closed" value="true" />
+      <created>1705757415152</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1705757415152</updated>
+    </task>
+    <task id="LOCAL-00016" summary="change return type from Collection&lt;Recipe&gt; to List&lt;Recipe&gt;">
+      <option name="closed" value="true" />
+      <created>1705757882143</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1705757882143</updated>
+    </task>
+    <task id="LOCAL-00017" summary="making gson constant">
+      <option name="closed" value="true" />
+      <created>1705758024153</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1705758024153</updated>
+    </task>
+    <task id="LOCAL-00018" summary="finishing touches and checks">
+      <option name="closed" value="true" />
+      <created>1705759011100</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1705759011100</updated>
+    </task>
+    <task id="LOCAL-00019" summary="removing file reading of responseBody for tests">
+      <option name="closed" value="true" />
+      <created>1705760001040</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1705760001040</updated>
+    </task>
+    <task id="LOCAL-00020" summary="returning fileReading for testResponses">
+      <option name="closed" value="true" />
+      <created>1705766554582</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1705766554582</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="initializing homework3" />
+    <MESSAGE value="add MealType and APIConfig" />
+    <MESSAGE value="add HealthLabel enum" />
+    <MESSAGE value="add UriParser" />
+    <MESSAGE value="add the rest of the health labels" />
+    <MESSAGE value="adding UriParserTest" />
+    <MESSAGE value="add APIConfigTest" />
+    <MESSAGE value="add exceptions" />
+    <MESSAGE value="add HttpSender" />
+    <MESSAGE value="Prepare HttpResponseHandler for development and testing" />
+    <MESSAGE value="add all require fields as enums and move all to fields" />
+    <MESSAGE value="add equals and hashCode to Recipe" />
+    <MESSAGE value="adding of to Recipe and refactoring to be with Lists against static Arrays" />
+    <MESSAGE value="Add HttpResponseHandler and tests for it" />
+    <MESSAGE value="adding requiredFieldsOnly to UriParser" />
+    <MESSAGE value="change return type from Collection&lt;Recipe&gt; to List&lt;Recipe&gt;" />
+    <MESSAGE value="making gson constant" />
+    <MESSAGE value="finishing touches and checks" />
+    <MESSAGE value="removing file reading of responseBody for tests" />
+    <MESSAGE value="returning fileReading for testResponses" />
+    <option name="LAST_COMMIT_MESSAGE" value="returning fileReading for testResponses" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/bg/sofia/uni/fmi/mjt/parser/UriParserTest.java</url>
+          <line>112</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Homework3$All_in_Homework3.ic" NAME="All in Homework3 Coverage Results" MODIFIED="1705758964074" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Homework3$UriParserTest.ic" NAME="UriParserTest Coverage Results" MODIFIED="1705616577315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>bg.sofia.uni.fmi.mjt.parser.*</FILTER>
+    </SUITE>
+  </component>
+</project>
