@@ -23,5 +23,5 @@ A repository for uploading exercises from the FMI MJT (Modern Java Technologies)
 </pre>
 
 ###### * The solutions pass all tests, but there are probablly better and cleaner solutions.
-###### ** Should change link urls from 'master' to 'mjt-2023-2024' when the course is over.
+###### ** Should change link urls from 'master' to 'mjt-2023-2024' when the course starts again.
 ###### *** Homework solutions are not always 100/100 solutions.
