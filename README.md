@@ -1,6 +1,10 @@
 # MJT-Course-FMI-2024
 A repository for uploading exercises from the FMI MJT (Modern Java Technologies) Course 2023-2024.
 
+### Project:
+Spotify 🎶 - Consists of a server that provides functionalities such as registration, login, storing and searching for songs, generating statistics of the most listened songs, creating and managing playlists, and streaming songs, and a client that utilizes these functionalities. </br>
+<a href="https://github.com/asen-krasimirov/MJT-Course-2024/tree/main/Project/Spotify">Solution</a>
+
 ### Lab exercises ( and solutions* ):
 <pre>
 - Intro to Java:              <a href="https://github.com/fmi/java-course/tree/master/01-intro-to-java/lab">Lab 01</a> | <a href="https://github.com/asen-krasimirov/MJT-Course-2024/tree/main/labs/Week01/src">solutions</a> </br>
