@@ -1,0 +1,4 @@
+RandomPlaylist;test2@test.test;BabyElephantWalk,CantinaBand,ImperialMarch,PinkPanther,StarWarsTheme
+Playlist1;test5@test.test;ImperialMarch
+EmptyPlaylist;test1@test.test;
+StarWarsPlaylist;test1@test.test;CantinaBand,ImperialMarch,StarWarsTheme
