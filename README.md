@@ -28,5 +28,4 @@ Spotify 🎶 - Consists of a server that provides functionalities such as regist
 
 > [!IMPORTANT]
 > ##### * The solutions pass all tests, but there are probablly better and cleaner solutions.
-> ##### ** Should change link urls from 'master' to 'mjt-2023-2024' when new iteration of the course starts.
 > ##### *** Homework solutions are not always 100/100 solutions.
